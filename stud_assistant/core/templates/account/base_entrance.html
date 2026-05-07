@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+{% load i18n %}
+
+{# allauth "entrance" layout (login/signup). Keep structure, customize look. #}
+
+{% block title %}
+  {% block head_title %}{% endblock head_title %} · StudAssistant
+{% endblock title %}
+
+{% block body %}
+  <div class="container auth-container">
+    <div class="auth-grid">
+      <section class="auth-hero">
+        <div class="auth-badge">{% trans "StudAssistant" %}</div>
+        <h1 class="auth-hero-title">{% trans "Your AI study companion" %}</h1>
+        <p class="auth-hero-subtitle muted">
+          {% trans "Plan, focus, and learn faster with an assistant that remembers context." %}
+        </p>
+        <ul class="auth-points muted-2">
+          <li>{% trans "Clean, distraction-free workspace" %}</li>
+          <li>{% trans "Answers with citations and memory" %}</li>
+          <li>{% trans "Works great on mobile and desktop" %}</li>
+        </ul>
+      </section>
+
+      <main class="auth-card surface auth-surface">
+        <div class="auth-card-inner">
+          {% block content %}{% endblock content %}
+        </div>
+      </main>
+    </div>
+  </div>
+
+  {% block extra_body %}{% endblock extra_body %}
+{% endblock body %}
+
