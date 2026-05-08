@@ -16,14 +16,14 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
-from vector_storage import get_vectorstore
+from .vector_storage import get_vectorstore
 from langsmith import traceable
 from rag.models import Message
 
 
 def get_chat_history(chat_id: str):
     """Bridge between Django ORM and LangChain History"""
-    db_messages = Message.objects.filter(chat_id=chat_id).order_by('date')
+    db_messages = Message.objects.filter(chat_id=chat_id).order_by('sent_at')
 
     langchain_history = ChatMessageHistory()
     system_id = os.getenv("SYSTEM_ID")
@@ -68,12 +68,11 @@ class StudAgent:
     Ти помічник студента Івано-Франківського національного технічного університету нафти і газу(ІФНТУНГ) студенту групи {group}, що навчається на факультеті {faculty}, на кафедрі {department}.
     Ти допомагаєш студенту з навчальними питаннями, пов'язаними з його курсами а саме надаєш відповіді на питання, пояснюєш матеріал, допомагаєш з домашніми завданнями та підготовкою до іспитів.
     Ти володієш загальною інформацією про ІФНТУНГ та про загальні положення, щоб допомготи з усіма питаннями пов'язаними з університетом станом на поточний рік
-    Якщо ти не знаєш відповіді на питання, чесно про це скажи.
+    Користуйся інформацвією, що є в твоїй базі знань.
     Не вигадуй інформацію, якщо не впевнений у відповіді.
     Відповідай українською мовою.
     Якщо студент задає питання не пов'язане з ІФНТУНГ поясни йому, що дане питання не входить в твою компетенцію.
     Якщо тобі не вистачає інформації про студента, запитай його щодо уточнення цих даних.
-
                 Контекст:
                 {context}
             """),
@@ -125,5 +124,5 @@ class StudAgent:
 
 if __name__ == "__main__":
     agent = StudAgent("Факультет Інформаційних технологій", "Інженерія програмного забезпечення", "ІП-22-1")
-    example_res = agent.ask("Чи володієш ти іфнормацією та вмістом про статут ІФНТУНГ? Якщо так то опиши деякі положення з нього.", uuid.uuid4())
+    example_res = agent.ask("Хто завідувач кафедри інженерії прогрманого забезпечення в 2026 році?", uuid.uuid4())
     print(example_res)
