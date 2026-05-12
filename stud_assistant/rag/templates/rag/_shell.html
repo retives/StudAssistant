@@ -14,26 +14,65 @@
       <div class="brand-subtitle">Your chats</div>
     </div>
 
-    <nav class="chat-nav">
+    <nav class="chat-nav" id="chatNav">
       {% for c in chats %}
-        <a
-          class="chat-link {% if active_chat and c.id == active_chat.id %}is-active{% endif %}"
-          href="{% url 'chat_page' chat_id=c.id %}"
-          title="{{ c.name }}"
-        >
-          <div class="chat-link-title">{{ c.name }}</div>
-          <div class="chat-link-meta">{{ c.last_updated|date:"M j, H:i" }}</div>
-        </a>
+        <div class="chat-item">
+          <a
+            class="chat-link {% if active_chat and c.id == active_chat.id %}is-active{% endif %}"
+            href="{% url 'chat_page' chat_id=c.id %}"
+            title="{{ c.name }}"
+          >
+            <div class="chat-link-title">{{ c.name }}</div>
+            <div class="chat-link-meta">{{ c.last_updated|date:"M j, H:i" }}</div>
+          </a>
+
+          <div class="actions-dropdown">
+            <button
+              class="menu-button"
+              type="button"
+              data-menu-id="menu-{{ c.id }}"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="menu-{{ c.id }}"
+              title="Chat actions"
+            >⋮</button>
+
+            <div id="menu-{{ c.id }}" class="menu-content" role="menu" hidden>
+              <button type="button" class="menu-item rename-btn" role="menuitem" data-chat-id="{{ c.id }}" data-old-name="{{ c.name|escapejs }}">Rename</button>
+              <form action="{% url 'delete_chat' c.id %}" method="post" onsubmit="return confirm('Delete this chat?')">
+                {% csrf_token %}
+                <button type="submit" class="menu-item delete-text" role="menuitem">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
       {% empty %}
         <div class="muted" style="color: rgba(226, 232, 240, 0.75);">No chats yet.</div>
       {% endfor %}
-    <form method="post">
+      <form method="post" action="{% url 'chat_create' %}">
         {% csrf_token %}
-        <input type="submit" value="Create Chat">
-    </form>
-
-
+        <button class="btn btn-primary" type="submit">New chat</button>
+      </form>
     </nav>
+
+    <div class="sidebar-footer">
+      <div class="profile-card" aria-label="Profile">
+        <a class="profile-link" href="{% url 'account_settings' %}" aria-label="Open settings">
+          <div class="profile-avatar" aria-hidden="true">
+            {{ request.user.username|default:"U"|slice:":1"|upper }}
+          </div>
+          <div class="profile-meta">
+            <div class="profile-name">{{ request.user.get_full_name|default:request.user.username|default:"User" }}</div>
+            {% if request.user.email %}
+              <div class="profile-email">{{ request.user.email }}</div>
+            {% endif %}
+          </div>
+        </a>
+        <div class="profile-actions">
+          <a class="btn btn-ghost profile-logout" href="{% url 'account_logout' %}">Logout</a>
+        </div>
+      </div>
+    </div>
   </aside>
 
   <main class="main">
@@ -46,7 +85,7 @@
     const shell = document.getElementById("appShell");
     const toggle = document.getElementById("sidebarToggle");
     const key = "studassistant.sidebarCollapsed";
-    
+
     function setCollapsed(collapsed) {
       shell.classList.toggle("is-collapsed", collapsed);
       toggle.setAttribute("aria-expanded", String(!collapsed));
@@ -63,6 +102,66 @@
 
     const log = document.getElementById("chatLog");
     if (log) log.scrollTop = log.scrollHeight;
+
+    const nav = document.getElementById("chatNav");
+
+    function closeAllMenus(exceptId) {
+      document.querySelectorAll(".menu-content").forEach((m) => {
+        if (exceptId && m.id === exceptId) return;
+        m.hidden = true;
+      });
+      document.querySelectorAll(".menu-button[aria-expanded='true']").forEach((b) => {
+        if (exceptId && b.getAttribute("aria-controls") === exceptId) return;
+        b.setAttribute("aria-expanded", "false");
+      });
+    }
+
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
+    }
+
+    nav?.addEventListener("click", async (e) => {
+      const btn = e.target.closest?.(".menu-button");
+      if (btn) {
+        e.preventDefault();
+        e.stopPropagation();
+        const menuId = btn.getAttribute("data-menu-id");
+        const menu = menuId ? document.getElementById(menuId) : null;
+        if (!menu) return;
+        const willOpen = menu.hidden;
+        closeAllMenus(willOpen ? menuId : null);
+        menu.hidden = !willOpen;
+        btn.setAttribute("aria-expanded", String(willOpen));
+        return;
+      }
+
+      const rename = e.target.closest?.(".rename-btn");
+      if (rename) {
+        e.preventDefault();
+        e.stopPropagation();
+        const chatId = rename.getAttribute("data-chat-id");
+        const oldName = rename.getAttribute("data-old-name") || "";
+        const newName = prompt("Enter new chat name:", oldName);
+        if (!chatId || !newName || newName.trim() === oldName.trim()) return;
+        const form = new FormData();
+        form.set("name", newName.trim());
+        const resp = await fetch(`{% url 'rename_chat' chat_id='00000000-0000-0000-0000-000000000000' %}`.replace("00000000-0000-0000-0000-000000000000", chatId) , {
+          method: "POST",
+          headers: { "X-CSRFToken": getCookie("csrftoken") || "" },
+          body: form,
+        });
+        if (resp.redirected) window.location.href = resp.url;
+        else window.location.reload();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (e.target.closest?.(".actions-dropdown")) return;
+      closeAllMenus();
+    });
   })();
 </script>
 {% endblock %}

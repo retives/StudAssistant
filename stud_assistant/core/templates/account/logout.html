@@ -1,26 +1,29 @@
 {% extends "account/base_entrance.html" %}
 {% load allauth i18n %}
-{%  load static %}
+{% load static %}
 {% block head_title %}
     {% trans "Sign Out" %}
 {% endblock head_title %}
 {% block content %}
-    {% element h1 %}
-        {% trans "Sign Out" %}
-    {% endelement %}
-    {% element p %}
-        {% trans 'Are you sure you want to sign out?' %}
-    {% endelement %}
-    {% url 'account_logout' as action_url %}
-    {% element form method="post" action=action_url no_visible_fields=True %}
-        {% slot body %}
-            {% csrf_token %}
-            {{ redirect_field }}
-        {% endslot %}
-        {% slot actions %}
-            {% element button type="submit" %}
-                {% trans 'Sign Out' %}
-            {% endelement %}
-        {% endslot %}
-    {% endelement %}
+  <div class="auth-container">
+    <div class="container" style="max-width: 46rem;">
+      <div class="surface" style="padding: var(--space-8);">
+        <h1 style="margin-top:0;">{% trans "Sign out" %}</h1>
+        <p class="muted" style="margin-bottom: var(--space-6);">
+          {% trans "Are you sure you want to sign out?" %}
+        </p>
+
+        {% url 'account_logout' as action_url %}
+        <form method="post" action="{{ action_url }}">
+          {% csrf_token %}
+          {{ redirect_field }}
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">{% trans "Sign out" %}</button>
+            <a class="btn btn-ghost" href="javascript:history.back()">{% trans "Cancel" %}</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 {% endblock content %}
