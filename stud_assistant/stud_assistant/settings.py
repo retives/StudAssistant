@@ -128,7 +128,7 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'core/static']
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/chat/'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 ACCOUNT_EMAIL_VERIFICATION = False
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
