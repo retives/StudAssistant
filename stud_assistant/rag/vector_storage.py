@@ -75,7 +75,7 @@ def embed_documents(vectorstore, documents, storage_path: str = "../docs/vectors
         logging.error(f"Error during embedding: {e}")
         return None
 
-def get_vectorstore(storage_path="docs/vectorstore"):
+def get_vectorstore(storage_path="../docs/vectorstore"):
     try:
         embeddings = OllamaEmbeddings(model="nomic-embed-text")
         vectorstore = FAISS.load_local(storage_path, embeddings, allow_dangerous_deserialization=True)
