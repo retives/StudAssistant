@@ -1,16 +1,16 @@
-import os
-import uuid
-
-# ---Temp ---
 import django
 import uuid
+import os
 
+from langchain_classic.agents.react import agent
+from langchain_classic.callbacks.tracers import logging
 from langchain_core.tools import tool
-
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'stud_assistant.settings')
-
-
 django.setup()
+
+
+import os
+import uuid
 from django.conf import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, MessagesPlaceholder
@@ -25,7 +25,31 @@ from rag.models import Message
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 import re
 from playwright.sync_api import sync_playwright
+from django.conf import settings
+import logging
 
+def create_ai_agent(llm, tools, chat_prompt):
+    agent = create_tool_calling_agent(llm, tools, chat_prompt)
+    agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, return_intermediate_steps=True)
+
+    pipeline_with_history = RunnableWithMessageHistory(
+        agent_executor,
+        get_session_history=get_chat_history,
+        history_messages_key='history',
+        input_messages_key='input',
+        history_factory_config=[
+            ConfigurableFieldSpec(
+                id='chat_history',
+                annotation=str,
+                name='Chat History',
+                description='Conversation ID',
+                default=None,
+            )
+        ]
+    )
+    return pipeline_with_history
+
+# ====== Tool management =====
 def get_chat_history(chat_id: str):
     """Bridge between Django ORM and LangChain History"""
     db_messages = Message.objects.filter(chat_id=chat_id).order_by('sent_at')
@@ -47,14 +71,18 @@ def search_university_docs(query: str) -> str:
     положення, статут, методичні вказівки та загальні запитання.
     """
     vectorstore = get_vectorstore()
+    if not vectorstore:
+        logging.info("VectorStore not found. Skipping search.")
     docs = vectorstore.similarity_search(query, k=3)
     return "\n\n".join([doc.page_content for doc in docs])
 
 @tool
 def get_timetable(group: str):
     """
-    Коли студент запитує у тебе про власний розклад або коли в нього пари звертайся до цієї функції.
-    Структура отриманого розкладу - [день{1 пара{час:"", назва_предмету:""}..} ...]
+    Коли студент запитує у тебе про власний розклад, використовуй шифр групи (ІП-22-1, ГМ-23-2 і подібні) дослівно або коли в нього пари, звертайся до цієї функції.
+    Структура отриманого розкладу - [день{1 пара{час:"", назва_предмету:""}..} ...], не вигадуй пари й використовуй
+    тільки новий розклад звідси, а не з історії повідомлень, щоб він завжди був актуальним
+    При наданні відповіді не змінюй положення пар, цитуй отриману інформацію з функції
     """
 
     with sync_playwright() as p:
@@ -85,21 +113,23 @@ def get_timetable(group: str):
             rows = rows[7:]
             timetable_data[day] = classes
         browser.close()
+        print(timetable_data)
         return timetable_data
+# ============================
 
 class StudAgent:
-    def __init__(self, faculty, department, group):
+    def __init__(self, group, faculty, department):
+        self.group = group
         self.faculty = faculty
         self.department = department
-        self.group = group
+
         self.llm = ChatGoogleGenerativeAI(
             google_api_key=os.environ['GEMINI_API_KEY'],
-            model='gemini-2.5-flash',
+            model='gemini-2.5-flash-lite',
             temperature = 0
         )
-        self.tools = [get_timetable, search_university_docs]
 
-        self.chat_prompt = ChatPromptTemplate.from_messages([
+        self.chat_prompt =  ChatPromptTemplate.from_messages([
             ("system", """"
             Ти помічник студента Івано-Франківського національного технічного університету нафти і газу(ІФНТУНГ) студенту групи {group}, що навчається на факультеті {faculty}, на кафедрі {department}.
             Ти допомагаєш студенту з навчальними питаннями, пов'язаними з його курсами а саме надаєш відповіді на питання, пояснюєш матеріал, допомагаєш з домашніми завданнями та підготовкою до іспитів.
@@ -111,40 +141,21 @@ class StudAgent:
             Якщо студент задає питання не пов'язане з ІФНТУНГ поясни йому, що дане питання не входить в твою компетенцію.
             Якщо тобі не вистачає інформації про студента, запитай його щодо уточнення цих даних.
                 Контекст:
-                {context}
+                {{context}}
             """),
             MessagesPlaceholder("history"),
             ("human", "{input}"),
+        MessagesPlaceholder("agent_scratchpad"),
+
         ])
+        self.tools = [search_university_docs, get_timetable]
 
-        agent = create_tool_calling_agent(self.llm, self.tools, self.chat_prompt)
-        self.agent_executor = AgentExecutor(
-            agent=agent,
-            tools=self.tools,
-            verbose=True,
-        )
-
-        self.pipeline_with_history = RunnableWithMessageHistory(
-            self.agent_executor,
-            get_session_history=get_chat_history,
-            history_messages_key='history',
-            input_messages_key='input',
-            output_messages_key='output',
-            history_factory_config=[
-                ConfigurableFieldSpec(
-                    id='chat_history',
-                    annotation=str,
-                    name='Chat History',
-                    description='Conversation ID',
-                    default=None,
-                )
-            ]
-        )
+        self.ai_agent = create_ai_agent(self.llm, self.tools, self.chat_prompt)
 
     @traceable
     def ask(self, message, chat_id):
         config = RunnableConfig(configurable={"chat_history": str(chat_id)})
-        response = self.pipeline_with_history.invoke(
+        response = self.ai_agent.invoke(
             {
                 "input": message,
                 "group": self.group,
@@ -153,7 +164,11 @@ class StudAgent:
             },
             config=config
         )
-        return response['answer']
+        raw_output = response['output']
+
+        if isinstance(raw_output, list) and len(raw_output) > 0:
+            return raw_output[0].get('text', str(raw_output))
+        return str(raw_output)
 
     @traceable
     def get_title(self, message):
@@ -162,7 +177,6 @@ class StudAgent:
         return response.content
 
 if __name__ == "__main__":
-    agent = StudAgent("Факультет Інформаційних технологій", "Інженерія програмного забезпечення", "ІП-22-1")
-
-    example_res = agent.ask("Який у мене розклад, група ІП-22-1", uuid.uuid4())
-    print(f"Response: {example_res}")
+    agent = StudAgent("ІП-22-1", "Інженерія програмного забезпечення", "Факультет Інформаційних технологій")
+    response = agent.ask("Який розклад групи іп-22-1 на цей тиждень?", uuid.uuid4())
+    print(response)
