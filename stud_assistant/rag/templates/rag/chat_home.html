@@ -1,0 +1,31 @@
+{% extends "rag/_shell.html" %}
+
+{% block title %}Chat · StudAssistant{% endblock %}
+
+{% block main %}
+  <div class="chat">
+    <div class="surface" style="padding: var(--space-8);">
+      <h2 style="margin-top:0;">Welcome back</h2>
+      <p class="muted" style="max-width: 70ch;">
+        Pick a chat from the sidebar to continue where you left off, or start a new one.
+      </p>
+
+      <div style="display:flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-6);">
+        <form method="post" action="{% url 'chat_create' %}">
+          {% csrf_token %}
+          <button class="btn btn-primary" type="submit">New chat</button>
+        </form>
+        {% if last_chat %}
+          <a class="btn btn-ghost" href="{% url 'chat_page' chat_id=last_chat.id %}">Open latest</a>
+        {% endif %}
+      </div>
+
+      {% if not chats %}
+        <div class="surface" style="margin-top: var(--space-8); padding: var(--space-6);">
+          <div class="muted">No chats yet. Create your first one to get started.</div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

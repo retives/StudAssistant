@@ -1,0 +1,144 @@
+{% extends "rag/_shell.html" %}
+{% load static %}
+
+{% block title %}Settings · StudAssistant{% endblock %}
+
+{% block main %}
+  <div class="surface" style="padding: var(--space-8); max-width: 48rem; width: 100%;">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap: var(--space-4); margin-bottom: var(--space-6);">
+      <h2 style="margin:0;">Settings</h2>
+      <div class="muted-2">Manage your account</div>
+    </div>
+
+    {% if success == "profile" %}
+      <div class="surface" style="padding: var(--space-4); background: color-mix(in srgb, var(--success) 14%, var(--surface)); border-color: color-mix(in srgb, var(--success) 35%, var(--border-color)); margin-bottom: var(--space-6);">
+        <strong>Saved.</strong> Your profile settings were updated.
+      </div>
+    {% endif %}
+    <div style="display:grid; gap: var(--space-8);">
+      <section>
+        <h3>Profile</h3>
+        <form method="post" action="{% url 'account_settings' %}">
+          {% csrf_token %}
+
+          <div class="field">
+            <div class="label">Username</div>
+            <input class="input" type="text" name="username" value="{{ request.user.username }}" required />
+            {% if errors.username %}<div class="muted" style="color: var(--danger); font-weight: 650;">{{ errors.username }}</div>{% endif %}
+          </div>
+
+          <div class="field">
+            <div class="label">Email</div>
+            <input class="input" type="email" name="email" value="{{ request.user.email }}" />
+            {% if errors.email %}<div class="muted" style="color: var(--danger); font-weight: 650;">{{ errors.email }}</div>{% endif %}
+          </div>
+
+          <div class="settings-academics">
+            <div class="field">
+              <div class="label">Faculty</div>
+              <select class="input" name="faculty" id="facultySelect">
+                <option value="">—</option>
+                {% for f in faculties %}
+                  <option value="{{ f.id }}" {% if selected_faculty_id == f.id|stringformat:"s" %}selected{% endif %}>{{ f.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="field">
+              <div class="label">Department</div>
+              <select class="input" name="department" id="departmentSelect">
+                <option value="">—</option>
+                {% for d in departments %}
+                  <option value="{{ d.id }}" data-faculty="{{ d.faculty_id }}" {% if selected_department_id == d.id|stringformat:"s" %}selected{% endif %}>{{ d.name }}</option>
+                {% endfor %}
+              </select>
+              {% if errors.department %}<div class="muted" style="color: var(--danger); font-weight: 650;">{{ errors.department }}</div>{% endif %}
+            </div>
+
+            <div class="field">
+              <div class="label">Group</div>
+              <select class="input" name="group" id="groupSelect">
+                <option value="">—</option>
+                {% for g in groups %}
+                  <option value="{{ g.name }}" data-department="{{ g.department_id }}" {% if selected_group_id == g.name|stringformat:"s" %}selected{% endif %}>{{ g.name }}</option>
+                {% endfor %}
+              </select>
+              {% if errors.group %}<div class="muted" style="color: var(--danger); font-weight: 650;">{{ errors.group }}</div>{% endif %}
+            </div>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-primary" type="submit">Save profile</button>
+            <a class="btn btn-ghost" href="{% url 'chat_home' %}">Back to chat</a>
+            <a class="btn btn-ghost" href="{% url 'account_password' %}">Change password</a>
+          </div>
+        </form>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const faculty = document.getElementById("facultySelect");
+      const department = document.getElementById("departmentSelect");
+      const group = document.getElementById("groupSelect");
+
+      function filterDepartments() {
+        const fac = faculty?.value || "";
+        if (!department) return;
+        let hasSelected = false;
+        Array.from(department.options).forEach((opt) => {
+          if (!opt.value) return;
+          const ok = !fac || opt.getAttribute("data-faculty") === fac;
+          opt.hidden = !ok;
+          if (!ok && opt.selected) opt.selected = false;
+          if (opt.selected) hasSelected = true;
+        });
+        if (!hasSelected && department.value && department.selectedIndex >= 0 && department.options[department.selectedIndex]?.hidden) {
+          department.value = "";
+        }
+      }
+
+      function filterGroups() {
+        const dep = department?.value || "";
+        if (!group) return;
+        let hasSelected = false;
+        Array.from(group.options).forEach((opt) => {
+          if (!opt.value) return;
+          const ok = !dep || opt.getAttribute("data-department") === dep;
+          opt.hidden = !ok;
+          if (!ok && opt.selected) opt.selected = false;
+          if (opt.selected) hasSelected = true;
+        });
+        if (!hasSelected && group.value && group.selectedIndex >= 0 && group.options[group.selectedIndex]?.hidden) {
+          group.value = "";
+        }
+      }
+
+      faculty?.addEventListener("change", function () {
+        filterDepartments();
+        filterGroups();
+      });
+      department?.addEventListener("change", function () {
+        filterGroups();
+      });
+
+      filterDepartments();
+      filterGroups();
+    })();
+  </script>
+
+  <style>
+    .settings-academics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+    @media (max-width: 980px) {
+      .settings-academics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+{% endblock %}
+

@@ -9,26 +9,13 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+from decouple import config
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-dp^9tx9(=iu-wybcs=!*rb1gni(z)6y4q7t56-=8o)+9*8@9i%'
-
-# SECURITY WARNING: don't run with debug turned on in production!
+SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
-
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'allauth',
     'allauth.account',
-    "rag"
+    "rag",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -123,10 +111,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
-
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'core/static']
 
-LOGIN_REDIRECT_URL = '/'
+AUTH_USER_MODEL = 'accounts.User'
+LOGIN_REDIRECT_URL = '/chat/'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 ACCOUNT_EMAIL_VERIFICATION = False
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

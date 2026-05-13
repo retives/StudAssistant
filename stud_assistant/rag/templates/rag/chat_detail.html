@@ -1,0 +1,49 @@
+{% extends "rag/_shell.html" %}
+
+{% block title %}{{ active_chat.name }} · StudAssistant{% endblock %}
+
+{% block main %}
+  <div class="chat">
+    <div class="surface" style="padding: var(--space-6);">
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap: var(--space-4); margin-bottom: var(--space-4);">
+        <h2 style="margin:0;">{{ active_chat.name }}</h2>
+        <div class="muted-2">Updated {{ active_chat.last_updated|date:"M j, H:i" }}</div>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        {% for m in messages %}
+
+          <div class="msg {% if m.sender_id == request.user.id %}user{% else %}ai{% endif %}">
+            <div class="msg-row">
+              <div class="bubble">{{ m.content|linebreaksbr }}</div>
+            </div>
+            {% if m.sender_id != request.user.id %}
+            <div class="msg-meta">
+              {{ m.sent_at|date:"M j, H:i" }}
+            </div>
+          {% endif %}
+          </div>
+        {% empty %}
+          <div class="muted">Start the conversation by sending a message.</div>
+        {% endfor %}
+      <span id="chat-bottom"></span>
+      </div>
+    </div>
+
+    <form class="composer" method="post" action="{% url 'send_message' chat_id=active_chat.id %}">
+      {% csrf_token %}
+      <div class="composer-row">
+        <textarea name="message" class="input" placeholder="Type your message…" required></textarea>
+        <button class="btn btn-primary" type="submit" onclick="bottom">Send</button>
+      </div>
+    </form>
+  </div>
+    <script>
+        (function (){
+            function bottom(){
+                document.getElementById("chat-bottom").scrollIntoView()
+            }
+        })()
+    </script>
+{% endblock %}
+
