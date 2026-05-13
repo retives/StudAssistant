@@ -67,8 +67,13 @@ WSGI_APPLICATION = 'stud_assistant.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.{}'.format(
+            config('DATABASE_ENGINE', "sqlite3")),
+        'NAME': config('DATABASE_NAME', BASE_DIR / 'db.sqlite3'),
+        'USER': config('DATABASE_USER', 'user'),
+        'PASSWORD': config('DATABASE_PASSWORD', ''),
+        'HOST': config('DATABASE_HOST', '127.0.0.1'),
+        'PORT': config('DATABASE_PORT', 5432),
     }
 }
 
