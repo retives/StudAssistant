@@ -1,39 +1,26 @@
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.document_loaders.word_document import Docx2txtLoader
-# from langchain_community.document_loaders.url import UnstructuredURLLoader
-from langchain_community.document_loaders.base import BaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
+import rag.config as config
+import configparser
 import os
 import logging
 import re
 import getpass
 
+# Configuration ----------
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(message)s")
+
+file_path = config.FILE_PATHS
+vector_path = config.VECTORSTORE_PATH
 
 load_dotenv()
 if not os.getenv("GEMINI_API_KEY"):
     os.environ["GEMINI_API_KEY"] = getpass.getpass("Enter your Gemini API key: ")
 
-FILE_PATHS = [
-    {
-        "path":"../docs/source/docx",
-        "loader": Docx2txtLoader,
-    },
-    {
-        "path":"../docs/source/pdf",
-        "loader": PyPDFLoader,
-    },
-]
-
-VECTORSTORE_PATH = "../docs/vectorstore"
-CHUNK_SIZE=3000
-CHUNK_OVERLAP_SIZE=200
-
 embedding_model = OllamaEmbeddings(model="nomic-embed-text")
+# ----------------------------
 
 def clean_document_content(content: str) -> str:
     """
@@ -59,6 +46,10 @@ def get_filenames(path: str):
             return None
         logging.info(f"Files found: {len(filepaths)}")
         return filepaths
+    except FileNotFoundError:
+        os.makedirs(path)
+        logging.error(f"Folder {path} created successfully.")
+        return None
     except Exception as e:
         logging.error(e)
 
@@ -75,7 +66,7 @@ def embed_documents(vectorstore, documents, storage_path: str = "../docs/vectors
         logging.error(f"Error during embedding: {e}")
         return None
 
-def get_vectorstore(storage_path="../docs/vectorstore"):
+def get_vectorstore(storage_path=vector_path):
     try:
         embeddings = OllamaEmbeddings(model="nomic-embed-text")
         vectorstore = FAISS.load_local(storage_path, embeddings, allow_dangerous_deserialization=True)
@@ -97,21 +88,21 @@ def save_files(path, loader_cls):
 
 def update_storage(embedding_model):
     vectorstore = None
-
-    if os.path.exists(VECTORSTORE_PATH) and os.listdir(VECTORSTORE_PATH):
+    # Check if vectorstore exists
+    if os.path.exists(vector_path) and os.listdir(vector_path):
         vectorstore = FAISS.load_local(
-            VECTORSTORE_PATH,
+            vector_path,
             embedding_model,
             allow_dangerous_deserialization=True
         )
         logging.info("Existing vectorstore loaded.")
-
+    # Split documents into chunks
     splitter = RecursiveCharacterTextSplitter(
-        chunk_size=CHUNK_SIZE,
-        chunk_overlap=CHUNK_OVERLAP_SIZE
+        chunk_size=int(config.CHUNK_SIZE),
+        chunk_overlap=int(config.CHUNK_OVERLAP_SIZE),
     )
 
-    for entry in FILE_PATHS:
+    for entry in file_path:
         logging.info(f"Processing folder: {entry['path']}")
         documents = save_files(entry['path'], entry['loader'])
 
@@ -136,8 +127,8 @@ def update_storage(embedding_model):
             logging.info(f"Indexed chunks {i} to {min(i + batch_size, len(chunks))}")
 
     if vectorstore:
-        vectorstore.save_local(VECTORSTORE_PATH)
-        logging.info(f"Vectorstore saved successfully at {VECTORSTORE_PATH}!")
+        vectorstore.save_local(config.VECTORSTORE_PATH)
+        logging.info(f"Vectorstore saved successfully at {config.VECTORSTORE_PATH}!")
 
 
 if __name__ == "__main__":
