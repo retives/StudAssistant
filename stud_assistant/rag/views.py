@@ -29,7 +29,7 @@ def chat_home(request):
 @require_POST
 def chat_create(request):
     chat = Chat.objects.filter(user=request.user).order_by("-last_updated").first()
-    if chat.messages.count() == 0:
+    if chat and chat.messages.count() == 0:
         return redirect("chat_page", chat_id=chat.id)
     new_chat = Chat.objects.create(user=request.user, name="New Chat")
     return redirect("chat_page", chat_id=new_chat.id)
@@ -54,20 +54,35 @@ def chat_page(request, chat_id):
 @login_required
 @require_POST
 def send_message(request, chat_id):
+    current_user = request.user
     chat = get_object_or_404(Chat, id=chat_id, user=request.user)
     content = (request.POST.get("message") or "").strip()
     if content:
         Message.objects.create(chat=chat, sender=request.user, content=content)
         # Ask agent
         try:
+            # Create an agent
             agent = StudAgent("Факультет інформаційних технологій", "Інженерія програмного забезпечення", "ІП-22-1")
-            response = agent.ask(content, chat_id)
-            logging.info("Response successful")
+            # Generate a chat title
             if chat.name == "New Chat":
                 chat.name = agent.get_title(content)
                 chat.save()
-            Message.objects.create(chat=chat, sender=User.objects.get(id=0), content=response)
+            # Handle bot response
+            system_user = User.objects.get(id=0)
+            if not system_user:
+                logging.error("No system user")
+                system_user = User.objects.create(id=0, username="RAG_SYSTEM_USER", first_name="", last_name="", password="ONEWINVERIW214@")
+                logging.info("System user created")
+            else:
+                logging.info("System user assigned successfully")
+
+            # Generate the response
+            response = agent.ask(content, chat_id)
+            Message.objects.create(chat=chat, sender=system_user, content=response)
+            logging.info("Response successful")
+
         except Exception as e:
+            Message.objects.create(chat=chat, sender=system_user, content="An Error Occurred. Try again later")
             print(e)
         Chat.objects.filter(id=chat.id).update(last_updated=timezone.now())
     return redirect("chat_page", chat_id=chat.id)
