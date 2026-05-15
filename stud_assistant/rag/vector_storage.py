@@ -2,7 +2,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
-import rag.config as config
+import rag.configs as config
 import configparser
 import os
 import logging
