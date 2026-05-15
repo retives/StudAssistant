@@ -23,6 +23,9 @@ from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
 from playwright.sync_api import sync_playwright
 import logging
 
+logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(message)s")
+
+
 def create_ai_agent(llm, tools, chat_prompt):
     agent = create_tool_calling_agent(llm, tools, chat_prompt)
     agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True, return_intermediate_steps=True)
@@ -63,13 +66,26 @@ def get_chat_history(chat_id: str):
 def search_university_docs(query: str) -> str:
     """
     Корисно для пошуку інформації про правила університету ІФНТУНГ,
-    положення, статут, методичні вказівки та загальні запитання.
+    положення, статут, методичні вказівки, загальні запитання, переліки співробітників, склад ректорату тощо.
     """
-    vectorstore = get_vectorstore()
-    if not vectorstore:
-        logging.info("VectorStore not found. Skipping search.")
-    docs = vectorstore.similarity_search(query, k=3)
-    return "\n\n".join([doc.page_content for doc in docs])
+    try:
+        vectorstore = get_vectorstore()
+        if not vectorstore:
+            logging.info("VectorStore not found. Skipping search.")
+            return "База знань наразі недоступна. Спробуйте повторити запит пізніше."
+
+        docs = vectorstore.similarity_search(query, k=3)
+
+        if not docs:
+            logging.error("No info in the knowledge base")
+            return "У базі знань не знайдено релевантної інформації за цим запитом."
+
+        return "\n\n".join([doc.page_content for doc in docs])
+
+    except Exception:
+        logging.exception("Failed during university document similarity search")
+        return "Під час пошуку в базі знань сталася помилка. Спробуйте повторити запит пізніше."
+
 
 @tool
 def get_timetable(group: str) -> dict:
@@ -119,7 +135,7 @@ class StudAgent:
 
         self.llm = ChatGoogleGenerativeAI(
             google_api_key=os.environ['GEMINI_API_KEY'],
-            model='gemini-2.5-flash',
+            model='gemini-2.5-flash-lite',
             temperature = 0
         )
 
@@ -147,6 +163,7 @@ class StudAgent:
 
         self.ai_agent = create_ai_agent(self.llm, self.tools, self.chat_prompt)
 
+
     @traceable
     def ask(self, message, chat_id):
         config = RunnableConfig(configurable={"chat_history": str(chat_id)})
@@ -173,5 +190,6 @@ class StudAgent:
 
 if __name__ == "__main__":
     agent = StudAgent("ІП-22-1", "Інженерія програмного забезпечення", "Факультет Інформаційних технологій")
-    response = agent.ask("Який розклад групи іп-22-1 ?", uuid.uuid4())
+    response = agent.ask("Переліч співробітників кафедри інженерії програмного забезпечення", uuid.uuid4())
     print(response)
+

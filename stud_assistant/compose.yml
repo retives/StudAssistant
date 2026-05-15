@@ -12,6 +12,43 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
+
+
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      OLLAMA_HOST: 0.0.0.0:11434
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    healthcheck:
+      test: [ "CMD", "ollama", "list" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+
+  ollama-pull:
+    image: ollama/ollama:latest
+    depends_on:
+      ollama:
+        condition: service_healthy
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    volumes:
+      - ollama_data:/root/.ollama
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    entrypoint: [ "/bin/sh", "-c" ]
+    command: >
+      "ollama pull nomic-embed-text &&
+       ollama list"
+
   django:
     build: .
     container_name: django-docker
@@ -20,8 +57,14 @@ services:
     volumes:
       - .:/app
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+      ollama-pull:
+        condition: service_completed_successfully
     environment:
+      OLLAMA_HOST: http://ollama:11434
       SECRET_KEY: ${SECRET_KEY}
       DATABASE_ENGINE: ${DATABASE_ENGINE}
       DATABASE_HOST: ${DATABASE_HOST}
@@ -34,3 +77,4 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
 volumes:
     postgres_data:
+    ollama_data:

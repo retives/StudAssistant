@@ -2,24 +2,28 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_ollama import OllamaEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
+from bs4 import SoupStrainer
+from langchain_community.document_loaders import WebBaseLoader
+from langchain_core.documents import Document
 import rag.configs as config
-import configparser
 import os
 import logging
 import re
 import getpass
+import json
 
 # Configuration ----------
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(message)s")
 
 file_path = config.FILE_PATHS
 vector_path = config.VECTORSTORE_PATH
+OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://ollama:11434")
 
 load_dotenv()
 if not os.getenv("GEMINI_API_KEY"):
     os.environ["GEMINI_API_KEY"] = getpass.getpass("Enter your Gemini API key: ")
 
-embedding_model = OllamaEmbeddings(model="nomic-embed-text")
+embedding_model = OllamaEmbeddings(model="nomic-embed-text", base_url=OLLAMA_BASE_URL)
 # ----------------------------
 
 def clean_document_content(content: str) -> str:
@@ -53,6 +57,42 @@ def get_filenames(path: str):
     except Exception as e:
         logging.error(e)
 
+def load_html(filepath: str = "../docs/source/html/links.json"):
+    web_data = []
+
+    try:
+        with open(filepath, "r", encoding="utf-8") as jsonfile:
+            data = json.load(jsonfile)
+    except FileNotFoundError:
+        logging.error(f"File not found at {filepath}")
+        return []
+
+    for link in data.get("links", []):
+        isolator = SoupStrainer(class_=["content", "view-content", "page-header"])
+
+        loader = WebBaseLoader(link["url"])
+        raw_html_doc = loader.scrape()
+
+        relevant_html = raw_html_doc.find_all(isolator)
+
+        combined_text = ""
+        for element in relevant_html:
+            combined_text += element.get_text(separator=" ", strip=True) + "\n"
+
+        if combined_text:
+            cleaned_content = clean_document_content(combined_text)
+
+            new_doc = Document(
+                page_content=f"Назва сайту: {link['name']}\nДані: {cleaned_content}",
+                metadata={
+                    "source": link["url"],
+                    "site_name": link["name"]
+                }
+            )
+            web_data.append(new_doc)
+
+    return web_data
+
 def embed_documents(vectorstore, documents, storage_path: str = "../docs/vectorstore"):
     if not documents:
         logging.error("No chunks to embed.")
@@ -68,12 +108,14 @@ def embed_documents(vectorstore, documents, storage_path: str = "../docs/vectors
 
 def get_vectorstore(storage_path=vector_path):
     try:
-        embeddings = OllamaEmbeddings(model="nomic-embed-text")
+        embeddings = OllamaEmbeddings(model="nomic-embed-text", base_url=OLLAMA_BASE_URL)
+        logging.info("Embeddings object initialized.")
+
         vectorstore = FAISS.load_local(storage_path, embeddings, allow_dangerous_deserialization=True)
-        logging.info("Vectorstore loaded.")
+        logging.info(f"Vectorstore loaded from {storage_path}.")
         return vectorstore
-    except Exception as e:
-        logging.error(f"Error during embedding: {e}")
+    except Exception:
+        logging.exception(f"Failed to load vectorstore from {storage_path}")
 
 def save_files(path, loader_cls):
     filenames = get_filenames(path)
@@ -84,7 +126,6 @@ def save_files(path, loader_cls):
     files = [loader_cls(filepath).load() for filepath in filepaths]
 
     return files
-
 
 def update_storage(embedding_model):
     vectorstore = None
@@ -125,6 +166,20 @@ def update_storage(embedding_model):
             else:
                 vectorstore.add_documents(batch)
             logging.info(f"Indexed chunks {i} to {min(i + batch_size, len(chunks))}")
+    # Load HTML data
+    html_documents = load_html()
+    chunks = splitter.split_documents(html_documents)
+    logging.info(f"Total chunks to process: {len(chunks)}")
+
+    batch_size = 10
+    for i in range(0, len(chunks), batch_size):
+        batch = chunks[i: i + batch_size]
+        if vectorstore is None:
+            vectorstore = FAISS.from_documents(batch, embedding_model)
+        else:
+            vectorstore.add_documents(batch)
+        logging.info(f"Indexed chunks {i} to {min(i + batch_size, len(chunks))}")
+
 
     if vectorstore:
         vectorstore.save_local(config.VECTORSTORE_PATH)
