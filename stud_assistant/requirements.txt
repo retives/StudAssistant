@@ -54,6 +54,8 @@ ormsgpack==1.12.2
 packaging==26.2
 playwright==1.59.0
 propcache==0.5.2
+psycopg2==2.9.12
+psycopg2-binary==2.9.12
 pyasn1==0.6.3
 pyasn1_modules==0.4.2
 pycparser==3.0

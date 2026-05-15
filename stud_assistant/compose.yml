@@ -1,12 +1,13 @@
 services:
   db:
-    image: postgres:17.1-alpine
+    container_name: db
+    image: postgres:15
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      - POSTGRES_DB=${DATABASE_NAME}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     ports:
-      - "5432:5432"
+      - "5433:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     env_file:
@@ -16,6 +17,8 @@ services:
     container_name: django-docker
     ports:
       -  "8000:8000"
+    volumes:
+      - .:/app
     depends_on:
       - db
     environment:
@@ -28,5 +31,6 @@ services:
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
     env_file:
       - .env
+    command: python manage.py runserver 0.0.0.0:8000
 volumes:
     postgres_data:
