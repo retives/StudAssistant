@@ -2,7 +2,6 @@ import django
 import uuid
 import os
 
-from langchain_classic.agents.react import agent
 from langchain_classic.callbacks.tracers import logging
 from langchain_core.tools import tool
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'stud_assistant.settings')
@@ -11,21 +10,17 @@ django.setup()
 
 import os
 import uuid
-from django.conf import settings
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate, PromptTemplate, MessagesPlaceholder
 from langchain_core.runnables import RunnableWithMessageHistory, ConfigurableFieldSpec, RunnableConfig
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
-from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from rag.vector_storage import get_vectorstore
 from langsmith import traceable
 from rag.models import Message
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
-import re
 from playwright.sync_api import sync_playwright
-from django.conf import settings
 import logging
 
 def create_ai_agent(llm, tools, chat_prompt):
@@ -77,44 +72,43 @@ def search_university_docs(query: str) -> str:
     return "\n\n".join([doc.page_content for doc in docs])
 
 @tool
-def get_timetable(group: str):
+def get_timetable(group: str) -> dict:
     """
     Коли студент запитує у тебе про власний розклад, використовуй шифр групи (ІП-22-1, ГМ-23-2 і подібні) дослівно або коли в нього пари, звертайся до цієї функції.
     Структура отриманого розкладу - [день{1 пара{час:"", назва_предмету:""}..} ...], не вигадуй пари й використовуй
-    тільки новий розклад звідси, а не з історії повідомлень, щоб він завжди був актуальним
+    тільки новий розклад, а не з історії повідомлень, щоб він завжди був актуальним
     При наданні відповіді не змінюй положення пар, цитуй отриману інформацію з функції
+    Сортуй розклад за датою
     """
-
     with sync_playwright() as p:
+        # Navigate to the website
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto(f"https://dekanat.nung.edu.ua/cgi-bin/timetable.cgi?n=700")
-
+        # Fill in the form
         page.fill("input[id=\"group\"]", group)
         page.click("button.btn")
 
         page.wait_for_selector("table")
 
-        rows = page.locator("tr").all()
-        dow = page.locator("small").all()
-        dow = [day.text_content() for day in dow]
-        print(dow)
-        timetable_data = {}
-        for day_index, day in enumerate(dow):
-            classes = {}
-            for index, row in enumerate(rows):
-                classes[str(index)] = {}
-                cells = row.locator("td").all_text_contents()
-                if cells:
-                    classes[str(index)]["time"] = cells[1][:5]
-                    classes[str(index)]["name"] = cells[2]
-                if len(classes) == 8:
-                    break
-            rows = rows[7:]
-            timetable_data[day] = classes
-        browser.close()
-        print(timetable_data)
-        return timetable_data
+        # Gather all the data
+        tables = page.locator("table").all()
+        dates = page.locator("h4").all_text_contents()[4:]
+        timetable = {}
+        for index, table in enumerate(tables):
+            table_data = table.locator("td").all_text_contents()
+            timetable[dates[index]] = table_data
+
+        for day_of_week, schedule in timetable.items():
+            timetable[day_of_week] = {}
+            for i in range(0, len(schedule), 3):
+                # print(schedule[i], schedule[i+1], schedule[i+2])
+                index = str(schedule[i])
+                timetable[day_of_week][index] = {}
+                timetable[day_of_week][index]["class_time"] = schedule[i + 1][:5]
+                timetable[day_of_week][index]["class_name"] = schedule[i + 2]
+
+        return timetable
 # ============================
 
 class StudAgent:
@@ -125,7 +119,7 @@ class StudAgent:
 
         self.llm = ChatGoogleGenerativeAI(
             google_api_key=os.environ['GEMINI_API_KEY'],
-            model='gemini-2.5-flash-lite',
+            model='gemini-2.5-flash',
             temperature = 0
         )
 
@@ -140,6 +134,7 @@ class StudAgent:
             Якщо студенту потрібен розклад, обов'язково використовуй інструмент 'get_timetable'
             Якщо студент задає питання не пов'язане з ІФНТУНГ поясни йому, що дане питання не входить в твою компетенцію.
             Якщо тобі не вистачає інформації про студента, запитай його щодо уточнення цих даних.
+            Форматуй відповіді відповідно до markdown-розмітки.
                 Контекст:
                 {{context}}
             """),
@@ -178,5 +173,5 @@ class StudAgent:
 
 if __name__ == "__main__":
     agent = StudAgent("ІП-22-1", "Інженерія програмного забезпечення", "Факультет Інформаційних технологій")
-    response = agent.ask("Який розклад групи іп-22-1 на цей тиждень?", uuid.uuid4())
+    response = agent.ask("Який розклад групи іп-22-1 ?", uuid.uuid4())
     print(response)
