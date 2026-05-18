@@ -16,7 +16,7 @@ from langchain_core.runnables import RunnableWithMessageHistory, ConfigurableFie
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_classic.chains import create_history_aware_retriever, create_retrieval_chain
-from rag.vector_storage import get_vectorstore
+from rag.vector_storage import get_retriever
 from langsmith import traceable
 from rag.models import Message
 from langchain_classic.agents import AgentExecutor, create_tool_calling_agent
@@ -25,6 +25,7 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="[%(levelname)s]: %(message)s")
 
+retriever = get_retriever()
 
 def create_ai_agent(llm, tools, chat_prompt):
     agent = create_tool_calling_agent(llm, tools, chat_prompt)
@@ -69,13 +70,12 @@ def search_university_docs(query: str) -> str:
     положення, статут, методичні вказівки, загальні запитання, переліки співробітників, склад ректорату тощо.
     """
     try:
-        vectorstore = get_vectorstore()
-        if not vectorstore:
-            logging.info("VectorStore not found. Skipping search.")
+        retriever = get_retriever()
+        if not retriever:
+            logging.info("Retriever not found. Skipping search.")
             return "База знань наразі недоступна. Спробуйте повторити запит пізніше."
 
-        docs = vectorstore.similarity_search(query, k=3)
-
+        docs = retriever.invoke(query)
         if not docs:
             logging.error("No info in the knowledge base")
             return "У базі знань не знайдено релевантної інформації за цим запитом."
@@ -144,7 +144,7 @@ class StudAgent:
             Ти помічник студента Івано-Франківського національного технічного університету нафти і газу(ІФНТУНГ) студенту групи {group}, що навчається на факультеті {faculty}, на кафедрі {department}.
             Ти допомагаєш студенту з навчальними питаннями, пов'язаними з його курсами а саме надаєш відповіді на питання, пояснюєш матеріал, допомагаєш з домашніми завданнями та підготовкою до іспитів.
             Ти володієш загальною інформацією про ІФНТУНГ та про загальні положення, щоб допомготи з усіма питаннями пов'язаними з університетом станом на поточний рік
-            Користуйся інформацвією, що є в твоїй базі знань.
+            Користуйся інформацією, що є в твоїй базі знань.
             Не вигадуй інформацію, якщо не впевнений у відповіді.
             Відповідай українською мовою.
             Якщо студенту потрібен розклад, обов'язково використовуй інструмент 'get_timetable'
