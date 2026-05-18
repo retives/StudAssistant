@@ -6,6 +6,8 @@ services:
       - POSTGRES_DB=${DATABASE_NAME}
       - POSTGRES_USER=${DATABASE_USER}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stud_admin"]
     ports:
       - "5433:5432"
     volumes:
@@ -57,8 +59,6 @@ services:
     volumes:
       - .:/app
     depends_on:
-      db:
-        condition: service_healthy
       ollama:
         condition: service_healthy
       ollama-pull:
