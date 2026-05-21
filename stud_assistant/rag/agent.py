@@ -64,27 +64,34 @@ def get_chat_history(chat_id: str):
     return langchain_history
 
 @tool
-def search_university_docs(query: str) -> str:
+def search_university_docs(query: str) -> tuple[str, str]:
     """
-    Корисно для пошуку інформації про правила університету ІФНТУНГ,
-    положення, статут, методичні вказівки, загальні запитання, переліки співробітників, склад ректорату тощо.
+    Використовуй цей інструмент ЗАВЖДИ, коли користувач запитує про ІФНТУНГ (співробітники,
+    ректорат, статут, навчальні плани, дисципліни, спеціальності, кафедри, факультети).
+
+    Аргумент `query` повинен містити лише ключові слова або коротку фразу для пошуку українською мовою
+    (наприклад, замість "Ознайом мене з ректоратом" передавай "склад ректорату").
+
+    Після отримання результату обов'язково проаналізуй його та виклади студенту у простому форматі.
+
+    Дані повертаються у форматі tuple(результат, джерело)
     """
     try:
         retriever = get_retriever()
         if not retriever:
             logging.info("Retriever not found. Skipping search.")
-            return "База знань наразі недоступна. Спробуйте повторити запит пізніше."
+            return "База знань наразі недоступна. Спробуйте повторити запит пізніше.", ""
 
         docs = retriever.invoke(query)
         if not docs:
             logging.error("No info in the knowledge base")
-            return "У базі знань не знайдено релевантної інформації за цим запитом."
+            return "У базі знань не знайдено релевантної інформації за цим запитом.", ""
 
-        return "\n\n".join([doc.page_content for doc in docs])
+        return "\n\n".join([doc.page_content for doc in docs]), "\n".join([doc.metadata['source'] for doc in docs])
 
     except Exception:
         logging.exception("Failed during university document similarity search")
-        return "Під час пошуку в базі знань сталася помилка. Спробуйте повторити запит пізніше."
+        return "Під час пошуку в базі знань сталася помилка. Спробуйте повторити запит пізніше.", ""
 
 
 @tool
@@ -127,6 +134,7 @@ def get_timetable(group: str) -> dict:
         return timetable
 # ============================
 
+
 class StudAgent:
     def __init__(self, group, faculty, department):
         self.group = group
@@ -135,8 +143,9 @@ class StudAgent:
 
         self.llm = ChatGoogleGenerativeAI(
             google_api_key=os.environ['GEMINI_API_KEY'],
-            model='gemini-2.5-flash-lite',
-            temperature = 0
+            model='gemini-2.5-flash',
+            temperature = 0,
+            # max_output_tokens=1024,
         )
 
         self.chat_prompt =  ChatPromptTemplate.from_messages([
@@ -178,8 +187,16 @@ class StudAgent:
         )
         raw_output = response['output']
 
-        if isinstance(raw_output, list) and len(raw_output) > 0:
-            return raw_output[0].get('text', str(raw_output))
+        if isinstance(raw_output, list):
+            text_pieces = []
+            for chunk in raw_output:
+                if isinstance(chunk, dict) and 'text' in chunk:
+                    text_pieces.append(chunk['text'])
+                elif isinstance(chunk, str):
+                    text_pieces.append(chunk)
+
+            return "".join(text_pieces)
+
         return str(raw_output)
 
     @traceable
