@@ -14,24 +14,25 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
+    networks:
+      - ai_network
 
 
   ollama:
     image: ollama/ollama:latest
     ports:
-      - "11434:11434"
+      - "11435:11434"
     volumes:
       - ollama_data:/root/.ollama
     environment:
       OLLAMA_HOST: 0.0.0.0:11434
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
     healthcheck:
       test: [ "CMD", "ollama", "list" ]
       interval: 5s
       timeout: 5s
       retries: 20
+    networks:
+      - ai_network
 
 
   ollama-pull:
@@ -43,13 +44,12 @@ services:
       OLLAMA_HOST: http://ollama:11434
     volumes:
       - ollama_data:/root/.ollama
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
     entrypoint: [ "/bin/sh", "-c" ]
     command: >
-      "ollama pull nomic-embed-text &&
-       ollama list"
+      ollama pull nomic-embed-text &&
+       ollama list
+    networks:
+      - ai_network
 
   django:
     build: .
@@ -75,6 +75,13 @@ services:
     env_file:
       - .env
     command: python manage.py runserver 0.0.0.0:8000
+    networks:
+      - ai_network
+
 volumes:
     postgres_data:
     ollama_data:
+
+networks:
+  ai_network:
+    driver: bridge
