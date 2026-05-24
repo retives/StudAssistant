@@ -122,4 +122,5 @@ AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/chat/'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 ACCOUNT_EMAIL_VERIFICATION = False
+ACCOUNT_ADAPTER = 'accounts.adapters.NungAccountAdapter'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
