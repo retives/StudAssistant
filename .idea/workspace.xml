@@ -1,7 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="" />
+    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/stud_assistant.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/adapters.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/0002_department_faculty_user_department_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/static/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/base_entrance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/core/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/pytest.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/configs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/_shell.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/vector_storage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/test_settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/test_auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/test_chat.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -11,23 +78,24 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="504" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "retives"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;retives&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/retives/StudAssistant.git",
-    "accountId": "0f529a78-caae-4912-bb11-abe4a103c4a4"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/retives/StudAssistant.git&quot;,
+    &quot;accountId&quot;: &quot;0f529a78-caae-4912-bb11-abe4a103c4a4&quot;
   }
-}]]></component>
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -43,6 +111,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Docker.Unnamed.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
     "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
@@ -52,13 +121,13 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/mnt/work/Python/StudAssistant/stud_assistant",
+    "git-widget-placeholder": "dev/cicd",
+    "last_opened_file_path": "/mnt/work/Python/StudAssistant/compose.yml",
     "settings.editor.selected.configurable": "application.passwordSafe",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Django Server.StudAssistant">
     <configuration name="StudAssistant" type="Python.DjangoServer" factoryName="Django server">
       <module name="StudAssistant" />
       <option name="ENV_FILES" value="" />
@@ -85,6 +154,18 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="Unnamed" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django Server.StudAssistant" />
+      <item itemvalue="Docker.Unnamed" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -109,6 +190,7 @@
       <workItem from="1777900115910" duration="620000" />
       <workItem from="1777901072312" duration="106000" />
       <workItem from="1778580013184" duration="58000" />
+      <workItem from="1779616083219" duration="26000" />
     </task>
     <servers />
   </component>

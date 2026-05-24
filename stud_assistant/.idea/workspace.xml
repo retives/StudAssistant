@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6256be80-934f-4daf-b903-498ac1be6184" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/stud_assistant.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/adapters.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/migrations/0002_department_faculty_user_department_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/password.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/accounts/settings.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/static/css/base.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/account/base_entrance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/account/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/account/logout.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/account/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates/core/base.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pytest.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/agent.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/configs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/templates/rag/_shell.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/templates/rag/chat.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/templates/rag/chat_detail.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/templates/rag/chat_home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/vector_storage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rag/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/test_settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/stud_assistant/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_auth.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_chat.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="502" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="Python Script" />
+        <option value="GitHub Workflow" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;retives&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/retives/StudAssistant.git&quot;,
+    &quot;accountId&quot;: &quot;0f529a78-caae-4912-bb11-abe4a103c4a4&quot;
+  }
+}</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="3DcdtJJU2KYYPaOR6rrTJug28et" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Django Server.stud_assistant.executor": "Run",
+    "Docker.Unnamed.executor": "Run",
+    "Docker.compose.yml.django: Compose Deployment.executor": "Run",
+    "Docker.compose.yml.ollama-pull: Compose Deployment.executor": "Run",
+    "Docker.compose.yml.ollama: Compose Deployment.executor": "Run",
+    "Python.agent.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.configs.executor": "Run",
+    "Python.scrape_schedule.executor": "Run",
+    "Python.temp.executor": "Run",
+    "Python.urls.executor": "Run",
+    "Python.vector_storage.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.pycharm.django.structure.promotion.once.per.project": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "SHELLCHECK.PATH": "/home/srgtkrvvv/.local/share/JetBrains/PyCharm2026.1/Shell Script/shellcheck",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "dev/cicd",
+    "last_opened_file_path": "/mnt/work/Python/StudAssistant",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "ml.llm.AcpAgentsConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs/source/pdf" />
+      <recent name="$PROJECT_DIR$/docs/source/docx" />
+      <recent name="$PROJECT_DIR$/docs/source/test" />
+      <recent name="$PROJECT_DIR$/stud_assistant" />
+      <recent name="$PROJECT_DIR$/stud_assistant/settings" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Django Server.stud_assistant">
+    <configuration name="stud_assistant" type="Python.DjangoServer" factoryName="Django server">
+      <module name="stud_assistant" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="stud_assistant.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.13 (stud_assistant) (2)" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="DEBUG_JUST_MY_CODE" value="false" />
+      <option name="RUN_TOOL" value="" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unnamed" type="docker-deploy" factoryName="docker-compose.yml" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yml.django: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="django" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yml.ollama-pull: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="ollama-pull" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="compose.yml.ollama: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="ollama" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Django Server.stud_assistant" />
+      <item itemvalue="Docker.Unnamed" />
+      <item itemvalue="Docker.compose.yml.django: Compose Deployment" />
+      <item itemvalue="Docker.compose.yml.ollama-pull: Compose Deployment" />
+      <item itemvalue="Docker.compose.yml.ollama: Compose Deployment" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Docker.compose.yml.ollama: Compose Deployment" />
+        <item itemvalue="Docker.compose.yml.ollama-pull: Compose Deployment" />
+        <item itemvalue="Docker.compose.yml.django: Compose Deployment" />
+        <item itemvalue="Docker.compose.yml.django: Compose Deployment" />
+        <item itemvalue="Docker.compose.yml.ollama: Compose Deployment" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PY-261.23567.174" />
+        <option value="bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6256be80-934f-4daf-b903-498ac1be6184" name="Changes" comment="" />
+      <created>1778585509267</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1778585509267</updated>
+      <workItem from="1778585516025" duration="423000" />
+      <workItem from="1778585980057" duration="6072000" />
+      <workItem from="1778594176297" duration="8489000" />
+      <workItem from="1778659946463" duration="3346000" />
+      <workItem from="1778685177219" duration="3131000" />
+      <workItem from="1778757115535" duration="14661000" />
+      <workItem from="1778824596990" duration="21633000" />
+      <workItem from="1778877824138" duration="5919000" />
+      <workItem from="1778914285604" duration="6000" />
+      <workItem from="1778939456800" duration="1798000" />
+      <workItem from="1778943638273" duration="943000" />
+      <workItem from="1778944997859" duration="3929000" />
+      <workItem from="1779087106777" duration="88000" />
+      <workItem from="1779131254949" duration="1164000" />
+      <workItem from="1779132627786" duration="5409000" />
+      <workItem from="1779177246495" duration="27201000" />
+      <workItem from="1779263092892" duration="24380000" />
+      <workItem from="1779342775033" duration="4627000" />
+      <workItem from="1779367712409" duration="3524000" />
+      <workItem from="1779384727222" duration="280000" />
+      <workItem from="1779613096223" duration="2788000" />
+    </task>
+    <task id="LOCAL-00001" summary="Rewrote StudAgent to use agent tools and updated docstrings">
+      <option name="closed" value="true" />
+      <created>1778660452317</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778660452317</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Moved configuration to the separate file and added logging">
+      <option name="closed" value="true" />
+      <created>1778660477075</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778660477075</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Handled issue with non-existent chat">
+      <option name="closed" value="true" />
+      <created>1778660516655</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778660516655</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Protected the secret key">
+      <option name="closed" value="true" />
+      <created>1778660534091</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1778660534091</updated>
+    </task>
+    <task id="LOCAL-00005" summary=".idea">
+      <option name="closed" value="true" />
+      <created>1778660541644</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1778660541644</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Manage deployment">
+      <option name="closed" value="true" />
+      <created>1778685538779</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1778685538779</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add entrypoint script and install playwright">
+      <option name="closed" value="true" />
+      <created>1778829201606</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829201607</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update requirements">
+      <option name="closed" value="true" />
+      <created>1778829225369</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829225369</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Set postgres as a db backend and host to be 'db' by default">
+      <option name="closed" value="true" />
+      <created>1778829263253</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829263253</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Renamed config to configs">
+      <option name="closed" value="true" />
+      <created>1778829288455</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829288455</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Finished compose file">
+      <option name="closed" value="true" />
+      <created>1778829301111</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829301111</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Delete memory.py">
+      <option name="closed" value="true" />
+      <created>1778829324168</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1778829324168</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Update the timetable tool to get the date">
+      <option name="closed" value="true" />
+      <created>1778831834832</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1778831834832</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Upadted config import">
+      <option name="closed" value="true" />
+      <created>1778831842690</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1778831842690</updated>
+    </task>
+    <task id="LOCAL-00015" summary="xml">
+      <option name="closed" value="true" />
+      <created>1778831848407</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1778831848407</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Use ollama image for the embeddings">
+      <option name="closed" value="true" />
+      <created>1778851811190</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1778851811190</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Move from vectorstore to multi vector retriever">
+      <option name="closed" value="true" />
+      <created>1779131408945</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1779131408946</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Updated requirements">
+      <option name="closed" value="true" />
+      <created>1779131424537</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1779131424537</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added multi vector configs + ollama host variable">
+      <option name="closed" value="true" />
+      <created>1779131450027</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1779131450027</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added healthcheck to the database to ensure service_healthy">
+      <option name="closed" value="true" />
+      <created>1779131472039</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1779131472039</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Update python version to 3.14">
+      <option name="closed" value="true" />
+      <created>1779131483100</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1779131483100</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Restrict email domains to official university">
+      <option name="closed" value="true" />
+      <created>1779180097479</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1779180097479</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Handled issues with HTML parsing and output cleaning">
+      <option name="closed" value="true" />
+      <created>1779345535672</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1779345535673</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Ensure correct port mapping and network configuration">
+      <option name="closed" value="true" />
+      <created>1779345551962</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1779345551962</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add requirements for file parsers and splitters">
+      <option name="closed" value="true" />
+      <created>1779345572995</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1779345572995</updated>
+    </task>
+    <task id="LOCAL-00026" summary="iml">
+      <option name="closed" value="true" />
+      <created>1779345588941</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1779345588941</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Added tests for authentication, chat creation and test configuration">
+      <option name="closed" value="true" />
+      <created>1779614513500</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1779614513500</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Enforce domain restriction">
+      <option name="closed" value="true" />
+      <created>1779614525569</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1779614525569</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Protected the secret key" />
+    <MESSAGE value=".idea" />
+    <MESSAGE value="Manage deployment" />
+    <MESSAGE value="Add entrypoint script and install playwright" />
+    <MESSAGE value="Update requirements" />
+    <MESSAGE value="Set postgres as a db backend and host to be 'db' by default" />
+    <MESSAGE value="Renamed config to configs" />
+    <MESSAGE value="Finished compose file" />
+    <MESSAGE value="Delete memory.py" />
+    <MESSAGE value="Update the timetable tool to get the date" />
+    <MESSAGE value="Upadted config import" />
+    <MESSAGE value="xml" />
+    <MESSAGE value="Use ollama image for the embeddings" />
+    <MESSAGE value="Move from vectorstore to multi vector retriever" />
+    <MESSAGE value="Updated requirements" />
+    <MESSAGE value="Added multi vector configs + ollama host variable" />
+    <MESSAGE value="Added healthcheck to the database to ensure service_healthy" />
+    <MESSAGE value="Update python version to 3.14" />
+    <MESSAGE value="Restrict email domains to official university" />
+    <MESSAGE value="Handled issues with HTML parsing and output cleaning" />
+    <MESSAGE value="Ensure correct port mapping and network configuration" />
+    <MESSAGE value="Add requirements for file parsers and splitters" />
+    <MESSAGE value="iml" />
+    <MESSAGE value="Added tests for authentication, chat creation and test configuration" />
+    <MESSAGE value="Enforce domain restriction" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enforce domain restriction" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/stud_assistant$scrape_schedule.coverage" NAME="scrape_schedule Coverage Results" MODIFIED="1778826671845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$agent.coverage" NAME="agent Coverage Results" MODIFIED="1778848743861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$config.coverage" NAME="config Coverage Results" MODIFIED="1778602868328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$vector_storage.coverage" NAME="vector_storage Coverage Results" MODIFIED="1779291194589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$urls.coverage" NAME="urls Coverage Results" MODIFIED="1778588547170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$temp.coverage" NAME="temp Coverage Results" MODIFIED="1779344861588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+    <SUITE FILE_PATH="coverage/stud_assistant$configs.coverage" NAME="configs Coverage Results" MODIFIED="1779291107788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/rag" />
+  </component>
+</project>
