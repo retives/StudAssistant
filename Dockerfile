@@ -22,4 +22,5 @@ RUN chmod +x /entrypoint.sh
 EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["sh", "-c", "python manage.py runserver 0.0.0.0:$PORT"]
+
+CMD gunicorn your_project_name.wsgi:application --bind 0.0.0.0:$PORT
