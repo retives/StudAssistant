@@ -23,4 +23,4 @@ EXPOSE 8000
 
 ENTRYPOINT ["/entrypoint.sh"]
 
-CMD gunicorn your_project_name.wsgi:application --bind 0.0.0.0:$PORT
+CMD gunicorn stud_assistant.wsgi:application --bind 0.0.0.0:$PORT
