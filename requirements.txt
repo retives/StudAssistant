@@ -71,6 +71,7 @@ pyee==13.0.1
 Pygments==2.20.0
 python-decouple==3.8
 python-dotenv==1.2.2
+psycopg2-binary==2.9.9
 PyYAML==6.0.3
 requests==2.34.2
 requests-toolbelt==1.0.0
