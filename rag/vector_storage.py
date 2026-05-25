@@ -281,6 +281,12 @@ def update_storage(embedding_model=embedding_model,
     vectorstore = None
     byte_store = LocalFileStore(doc_path)
     docstore = create_kv_docstore(byte_store)
+
+    source_names = ["docs", "html", "pdf"]
+    for name in source_names:
+        path = os.path.join("docs/source", name)
+        os.makedirs(path)
+        
     os.makedirs(vector_path, exist_ok=True)
     os.makedirs(doc_path, exist_ok=True)
     # Load the state

@@ -1,0 +1,21 @@
+name: deploy.yml
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+    deploy:
+      runs-on: ubuntu-latest
+      steps:
+        - uses: JorgeLNJunio/render-deploy@v1.5.0
+          with:
+            api_key: ${{ secrets.RENDER_API_KEY }}
+            service_id: ${{ secrets.RENDER_SERVICE_ID }}
+            wait_deploy: true
