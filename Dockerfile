@@ -8,11 +8,13 @@ RUN mkdir /app
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y zstd && rm -rf /var/lib/apt/lists/*
+
 RUN curl -fsSL https://ollama.com/install.sh | sh
 
-RUN ollama serve & \
+RUN OLLAMA_HOST=127.0.0.1:11434 ollama serve & \
     sleep 5 && \
-    ollama pull nomic-embed-text && \
+    OLLAMA_HOST=127.0.0.1:11434 ollama pull nomic-embed-text && \
     pkill ollama
 
 RUN pip install --upgrade pip
