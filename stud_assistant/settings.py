@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 from pathlib import Path
 from decouple import config
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     "studassistant.onrender.com", 
     "localhost", 
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -116,10 +118,10 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
+
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'core/static']
+STATICFILES_DIRS = [BASE_DIR / 'core/static',]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_REDIRECT_URL = '/chat/'
