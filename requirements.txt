@@ -23,7 +23,6 @@ cuda-pathfinder==1.5.4
 cuda-toolkit==13.0.2
 cycler==0.12.1
 dataclasses-json==0.6.7
-decouple==0.0.7
 distro==1.9.0
 Django==6.1a1
 django-allauth==65.17.0
