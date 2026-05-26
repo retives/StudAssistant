@@ -8,10 +8,16 @@ RUN mkdir /app
 
 WORKDIR /app
 
+RUN curl -fsSL https://ollama.com/install.sh | sh
+
+RUN ollama serve & \
+    sleep 5 && \
+    ollama pull nomic-embed-text && \
+    pkill ollama
+
 RUN pip install --upgrade pip
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
-
 RUN playwright install --with-deps chromium
 
 COPY . /app
