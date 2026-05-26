@@ -36,5 +36,4 @@ else:
     print("Admin already exists")
 EOF
 
-ollama serve &
 exec "$@"
