@@ -1,0 +1,16 @@
+<DataSourcesHistory>
+  <DataSourceFromHistory isRemovedFromProject="true">
+    <data-source source="LOCAL" name="PostgreSQL" uuid="f5b08dfe-e842-44e5-8c47-acbf4e6730fc">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="POSTGRES" />
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <configured-by-url>true</configured-by-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>postgresql://stud_admin:8AobAdjIzFC9bXaDxRvllJE9oluI3bdX@dpg-d89d856q1p3s73fom820-a.frankfurt-postgres.render.com/stud_assistant_db</jdbc-url>
+      <secret-storage>master_key</secret-storage>
+      <user-name>stud_admin</user-name>
+      <schema-mapping />
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </DataSourceFromHistory>
+</DataSourcesHistory>

@@ -1,0 +1,156 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"4cba138a-77de-41af-a038-b94422516d60\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.gitignore\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/.gitignore\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/dataSources.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/inspectionProfiles/profiles_settings.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/misc.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/modules.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/stud_assistant.iml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/.idea/vcs.xml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/Dockerfile\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/adapters.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/admin.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/apps.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/migrations/0001_initial.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/migrations/0002_department_faculty_user_department_and_more.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/migrations/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/models.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/password.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/settings.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/tests.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/urls.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/accounts/views.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/admin.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/apps.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/migrations/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/models.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/tests.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/chat/views.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/compose.yml\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/conftest.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/static/css/base.css\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/templates/account/base_entrance.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/templates/account/login.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/templates/account/logout.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/templates/account/signup.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/core/templates/core/base.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/entrypoint.sh\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/manage.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/pytest.ini\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/admin.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/agent.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/apps.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/configs.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/migrations/0001_initial.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/migrations/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/models.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/templates/rag/_shell.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_detail.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_home.html\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/tests.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/urls.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/vector_storage.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/rag/views.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/requirements.txt\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/__init__.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/asgi.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/settings.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/test_settings.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/urls.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/stud_assistant/wsgi.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/tests/conftest.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/tests/test_auth.py\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/stud_assistant/tests/test_chat.py\" beforeDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"DjangoConsoleOptions\" custom-start-script=\"import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)\">\n    <option name=\"myCustomStartScript\" value=\"import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)\" />\n  </component>\n  <component name=\"EmbeddingIndexingInfo\">\n    <option name=\"cachedIndexableFilesCount\" value=\"504\" />\n    <option name=\"fileBasedEmbeddingIndicesEnabled\" value=\"true\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;retives&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/retives/StudAssistant.git&quot;,\n    &quot;accountId&quot;: &quot;0f529a78-caae-4912-bb11-abe4a103c4a4&quot;\n  }\n}</component>\n  <component name=\"McpProjectServerCommands\">\n    <commands />\n    <urls />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1,\n  &quot;fromUser&quot;: false\n}</component>\n  <component name=\"ProjectId\" id=\"3DGCSj06VYbFeT3qGHMOXTOJNvA\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Docker.Unnamed.executor\": \"Run\",\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\n    \"Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found\": \"New/updated database configurations found\",\n    \"Notification.DoNotAsk-DatabaseConfigFileWatcher.found\": \"true\",\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\n    \"RunOnceActivity.OpenDjangoStructureViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\n    \"codeWithMe.voiceChat.enabledByDefault\": \"false\",\n    \"git-widget-placeholder\": \"dev/cicd\",\n    \"last_opened_file_path\": \"/mnt/work/Python/StudAssistant/compose.yml\",\n    \"settings.editor.selected.configurable\": \"application.passwordSafe\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RunManager\" selected=\"Django Server.StudAssistant\">\n    <configuration name=\"StudAssistant\" type=\"Python.DjangoServer\" factoryName=\"Django server\">\n      <module name=\"StudAssistant\" />\n      <option name=\"ENV_FILES\" value=\"\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <option name=\"DEBUG_JUST_MY_CODE\" value=\"false\" />\n      <option name=\"RUN_TOOL\" value=\"\" />\n      <option name=\"launchJavascriptDebuger\" value=\"false\" />\n      <option name=\"port\" value=\"8000\" />\n      <option name=\"host\" value=\"\" />\n      <option name=\"additionalOptions\" value=\"\" />\n      <option name=\"browserUrl\" value=\"\" />\n      <option name=\"runTestServer\" value=\"false\" />\n      <option name=\"runNoReload\" value=\"false\" />\n      <option name=\"useCustomRunCommand\" value=\"false\" />\n      <option name=\"customRunCommand\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Unnamed\" type=\"docker-deploy\" factoryName=\"docker-compose.yml\" server-name=\"Docker\">\n      <deployment type=\"docker-compose.yml\">\n        <settings>\n          <option name=\"sourceFilePath\" value=\"compose.yml\" />\n        </settings>\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <list>\n      <item itemvalue=\"Django Server.StudAssistant\" />\n      <item itemvalue=\"Docker.Unnamed\" />\n    </list>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PY-261.23567.174\" />\n        <option value=\"bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"4cba138a-77de-41af-a038-b94422516d60\" name=\"Changes\" comment=\"\" />\n      <created>1777899021175</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1777899021175</updated>\n      <workItem from=\"1777899022898\" duration=\"177000\" />\n      <workItem from=\"1777899224687\" duration=\"200000\" />\n      <workItem from=\"1777899455565\" duration=\"179000\" />\n      <workItem from=\"1777899689233\" duration=\"203000\" />\n      <workItem from=\"1777899916839\" duration=\"129000\" />\n      <workItem from=\"1777900115910\" duration=\"620000\" />\n      <workItem from=\"1777901072312\" duration=\"106000\" />\n      <workItem from=\"1778580013184\" duration=\"58000\" />\n      <workItem from=\"1779616083219\" duration=\"26000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 66742ec456309f41b70446d92f7a7d2341014ad8)
++++ b/.idea/workspace.xml	(date 1779728964167)
+@@ -1,73 +1,11 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="AutoImportSettings">
++    <option name="autoReloadType" value="ALL" />
++  </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/.gitignore" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/dataSources.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/misc.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/modules.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/stud_assistant.iml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/.idea/vcs.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/Dockerfile" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/adapters.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/admin.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/apps.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/0001_initial.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/0002_department_faculty_user_department_and_more.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/migrations/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/models.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/password.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/templates/accounts/settings.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/tests.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/urls.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/accounts/views.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/admin.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/apps.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/migrations/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/models.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/tests.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/chat/views.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/compose.yml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/conftest.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/static/css/base.css" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/base_entrance.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/login.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/logout.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/account/signup.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/core/templates/core/base.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/entrypoint.sh" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/manage.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/pytest.ini" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/admin.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/agent.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/apps.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/configs.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/migrations/0001_initial.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/migrations/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/models.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/_shell.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_detail.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/templates/rag/chat_home.html" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/tests.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/urls.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/vector_storage.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/rag/views.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/requirements.txt" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/__init__.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/asgi.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/settings.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/test_settings.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/urls.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/stud_assistant/wsgi.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/conftest.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/test_auth.py" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/stud_assistant/tests/test_chat.py" beforeDir="false" />
++    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="Add vectorstore">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -78,10 +16,15 @@
+     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+   </component>
+   <component name="EmbeddingIndexingInfo">
+-    <option name="cachedIndexableFilesCount" value="504" />
++    <option name="cachedIndexableFilesCount" value="505" />
+     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="dev/cicd" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -121,8 +64,13 @@
+     "RunOnceActivity.git.unshallow": "true",
+     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+     "codeWithMe.voiceChat.enabledByDefault": "false",
+-    "git-widget-placeholder": "dev/cicd",
++    "git-widget-placeholder": "main",
+     "last_opened_file_path": "/mnt/work/Python/StudAssistant/compose.yml",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
+     "settings.editor.selected.configurable": "application.passwordSafe",
+     "vue.rearranger.settings.migration": "true"
+   }
+@@ -191,10 +139,33 @@
+       <workItem from="1777901072312" duration="106000" />
+       <workItem from="1778580013184" duration="58000" />
+       <workItem from="1779616083219" duration="26000" />
++      <workItem from="1779720696992" duration="1678000" />
++    </task>
++    <task id="LOCAL-00001" summary="Add vectorstore">
++      <option name="closed" value="true" />
++      <created>1779721797956</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1779721797956</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Add vectorstore">
++      <option name="closed" value="true" />
++      <created>1779721856974</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1779721856974</updated>
+     </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
+   </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Move all the files one folder up" />
++    <MESSAGE value="Add vectorstore" />
++    <option name="LAST_COMMIT_MESSAGE" value="Add vectorstore" />
++  </component>
+ </project>
+\ No newline at end of file

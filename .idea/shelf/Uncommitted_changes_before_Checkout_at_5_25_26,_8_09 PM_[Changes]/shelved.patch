@@ -1,0 +1,112 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"ALL\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"4cba138a-77de-41af-a038-b94422516d60\" name=\"Changes\" comment=\"Add vectorstore\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"DjangoConsoleOptions\" custom-start-script=\"import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)\">\n    <option name=\"myCustomStartScript\" value=\"import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)\" />\n  </component>\n  <component name=\"EmbeddingIndexingInfo\">\n    <option name=\"cachedIndexableFilesCount\" value=\"505\" />\n    <option name=\"fileBasedEmbeddingIndicesEnabled\" value=\"true\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;retives&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/retives/StudAssistant.git&quot;,\n    &quot;accountId&quot;: &quot;0f529a78-caae-4912-bb11-abe4a103c4a4&quot;\n  }\n}</component>\n  <component name=\"McpProjectServerCommands\">\n    <commands />\n    <urls />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 1,\n  &quot;fromUser&quot;: false\n}</component>\n  <component name=\"ProjectId\" id=\"3DGCSj06VYbFeT3qGHMOXTOJNvA\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Docker.Unnamed.executor&quot;: &quot;Run&quot;,\n    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,\n    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;New/updated database configurations found&quot;,\n    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,\n    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;dev/cicd&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/mnt/work/Python/StudAssistant/compose.yml&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"Django Server.StudAssistant\">\n    <configuration name=\"StudAssistant\" type=\"Python.DjangoServer\" factoryName=\"Django server\">\n      <module name=\"StudAssistant\" />\n      <option name=\"ENV_FILES\" value=\"\" />\n      <option name=\"INTERPRETER_OPTIONS\" value=\"\" />\n      <option name=\"PARENT_ENVS\" value=\"true\" />\n      <envs>\n        <env name=\"PYTHONUNBUFFERED\" value=\"1\" />\n      </envs>\n      <option name=\"SDK_HOME\" value=\"\" />\n      <option name=\"WORKING_DIRECTORY\" value=\"\" />\n      <option name=\"IS_MODULE_SDK\" value=\"false\" />\n      <option name=\"ADD_CONTENT_ROOTS\" value=\"true\" />\n      <option name=\"ADD_SOURCE_ROOTS\" value=\"true\" />\n      <option name=\"DEBUG_JUST_MY_CODE\" value=\"false\" />\n      <option name=\"RUN_TOOL\" value=\"\" />\n      <option name=\"launchJavascriptDebuger\" value=\"false\" />\n      <option name=\"port\" value=\"8000\" />\n      <option name=\"host\" value=\"\" />\n      <option name=\"additionalOptions\" value=\"\" />\n      <option name=\"browserUrl\" value=\"\" />\n      <option name=\"runTestServer\" value=\"false\" />\n      <option name=\"runNoReload\" value=\"false\" />\n      <option name=\"useCustomRunCommand\" value=\"false\" />\n      <option name=\"customRunCommand\" value=\"\" />\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"Unnamed\" type=\"docker-deploy\" factoryName=\"docker-compose.yml\" server-name=\"Docker\">\n      <deployment type=\"docker-compose.yml\">\n        <settings>\n          <option name=\"sourceFilePath\" value=\"compose.yml\" />\n        </settings>\n      </deployment>\n      <method v=\"2\" />\n    </configuration>\n    <list>\n      <item itemvalue=\"Django Server.StudAssistant\" />\n      <item itemvalue=\"Docker.Unnamed\" />\n    </list>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-PY-261.23567.174\" />\n        <option value=\"bundled-python-sdk-024ed6589d45-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.23567.174\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"4cba138a-77de-41af-a038-b94422516d60\" name=\"Changes\" comment=\"\" />\n      <created>1777899021175</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1777899021175</updated>\n      <workItem from=\"1777899022898\" duration=\"177000\" />\n      <workItem from=\"1777899224687\" duration=\"200000\" />\n      <workItem from=\"1777899455565\" duration=\"179000\" />\n      <workItem from=\"1777899689233\" duration=\"203000\" />\n      <workItem from=\"1777899916839\" duration=\"129000\" />\n      <workItem from=\"1777900115910\" duration=\"620000\" />\n      <workItem from=\"1777901072312\" duration=\"106000\" />\n      <workItem from=\"1778580013184\" duration=\"58000\" />\n      <workItem from=\"1779616083219\" duration=\"26000\" />\n      <workItem from=\"1779720696992\" duration=\"1678000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Add vectorstore\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1779721797956</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1779721797956</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Add vectorstore\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1779721856974</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1779721856974</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"3\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Move all the files one folder up\" />\n    <MESSAGE value=\"Add vectorstore\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Add vectorstore\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 1f7c9fad0e40dabf2d2ff0a89f80ec53e12b64ce)
++++ b/.idea/workspace.xml	(date 1779728183403)
+@@ -4,8 +4,9 @@
+     <option name="autoReloadType" value="ALL" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="Add vectorstore">
++    <list default="true" id="4cba138a-77de-41af-a038-b94422516d60" name="Changes" comment="Switch to gunicorn">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -52,30 +53,31 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Docker.Unnamed.executor&quot;: &quot;Run&quot;,
+-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+-    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;New/updated database configurations found&quot;,
+-    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;dev/cicd&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/mnt/work/Python/StudAssistant/compose.yml&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Docker.Unnamed.executor": "Run",
++    "ModuleVcsDetector.initialDetectionPerformed": "true",
++    "Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found": "New/updated database configurations found",
++    "Notification.DoNotAsk-DatabaseConfigFileWatcher.found": "true",
++    "RunOnceActivity.MCP Project settings loaded": "true",
++    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
++    "RunOnceActivity.git.unshallow": "true",
++    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
++    "codeWithMe.voiceChat.enabledByDefault": "false",
++    "git-widget-placeholder": "dev/cicd",
++    "last_opened_file_path": "/mnt/work/Python/StudAssistant/compose.yml",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "application.passwordSafe",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
+-  <component name="RunManager" selected="Django Server.StudAssistant">
++}]]></component>
++  <component name="RunManager" selected="Docker.Unnamed">
+     <configuration name="StudAssistant" type="Python.DjangoServer" factoryName="Django server">
+       <module name="StudAssistant" />
+       <option name="ENV_FILES" value="" />
+@@ -139,7 +141,7 @@
+       <workItem from="1777901072312" duration="106000" />
+       <workItem from="1778580013184" duration="58000" />
+       <workItem from="1779616083219" duration="26000" />
+-      <workItem from="1779720696992" duration="1678000" />
++      <workItem from="1779720696992" duration="5159000" />
+     </task>
+     <task id="LOCAL-00001" summary="Add vectorstore">
+       <option name="closed" value="true" />
+@@ -157,7 +159,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1779721856974</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="Switch to gunicorn">
++      <option name="closed" value="true" />
++      <created>1779722628110</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1779722628110</updated>
++    </task>
++    <option name="localTasksCounter" value="4" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -166,6 +176,7 @@
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Move all the files one folder up" />
+     <MESSAGE value="Add vectorstore" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Add vectorstore" />
++    <MESSAGE value="Switch to gunicorn" />
++    <option name="LAST_COMMIT_MESSAGE" value="Switch to gunicorn" />
+   </component>
+ </project>
+\ No newline at end of file
