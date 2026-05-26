@@ -22,4 +22,17 @@ else:
     print("SYSTEM_USER already exists")
 EOF
 
+python manage.py shell <<EOF
+from django.contrib.auth import get_user_model
+User = get_user_model()
+if not User.objects.filter(username='stud_admin').exists():
+    User.objects.create_superuser(
+        username='stud_admin',
+        email='admin@studassistant.onrender.com',
+        password='2-Bev45rt
+    )
+    print("Admin initialized")
+else:
+    print("Admin already exists")
+EOF
 exec "$@"
