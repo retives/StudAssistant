@@ -35,4 +35,6 @@ if not User.objects.filter(username='stud_admin').exists():
 else:
     print("Admin already exists")
 EOF
+
+ollama serve &
 exec "$@"
