@@ -1,5 +1,5 @@
 {% extends "rag/_shell.html" %}
-
+{% load markdown_extras %}
 {% block title %}{{ active_chat.name }} · StudAssistant{% endblock %}
 
 {% block main %}
@@ -15,7 +15,7 @@
 
           <div class="msg {% if m.sender_id == request.user.id %}user{% else %}ai{% endif %}">
             <div class="msg-row">
-              <div class="bubble">{{ m.content|linebreaksbr }}</div>
+              <div class="bubble">{{ m.content|linebreaksbr|markdown|safe }}</div>
             </div>
             {% if m.sender_id != request.user.id %}
             <div class="msg-meta">
