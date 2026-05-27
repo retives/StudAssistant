@@ -7,7 +7,10 @@ services:
       - POSTGRES_USER=${DATABASE_USER}
       - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U stud_admin"]
+      test: ["CMD-SHELL", "pg_isready -U $${DATABASE_USER} -d $${DATABASE_NAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
     ports:
       - "5433:5432"
     volumes:
@@ -17,39 +20,39 @@ services:
     networks:
       - ai_network
 
-
-  ollama:
-    image: ollama/ollama:latest
-    ports:
-      - "11435:11434"
-    volumes:
-      - ollama_data:/root/.ollama
-    environment:
-      OLLAMA_HOST: 0.0.0.0:11434
-    healthcheck:
-      test: [ "CMD", "ollama", "list" ]
-      interval: 5s
-      timeout: 5s
-      retries: 20
-    networks:
-      - ai_network
-
-
-  ollama-pull:
-    image: ollama/ollama:latest
-    depends_on:
-      ollama:
-        condition: service_healthy
-    environment:
-      OLLAMA_HOST: http://ollama:11434
-    volumes:
-      - ollama_data:/root/.ollama
-    entrypoint: [ "/bin/sh", "-c" ]
-    command: >
-      ollama pull nomic-embed-text &&
-       ollama list
-    networks:
-      - ai_network
+#
+#  ollama:
+#    image: ollama/ollama:latest
+#    ports:
+#      - "11435:11434"
+#    volumes:
+#      - ollama_data:/root/.ollama
+#    environment:
+#      OLLAMA_HOST: 0.0.0.0:11434
+#    healthcheck:
+#      test: [ "CMD", "ollama", "list" ]
+#      interval: 5s
+#      timeout: 5s
+#      retries: 20
+#    networks:
+#      - ai_network
+#
+#
+#  ollama-pull:
+#    image: ollama/ollama:latest
+#    depends_on:
+#      ollama:
+#        condition: service_healthy
+#    environment:
+#      OLLAMA_HOST: http://ollama:11434
+#    volumes:
+#      - ollama_data:/root/.ollama
+#    entrypoint: [ "/bin/sh", "-c" ]
+#    command: >
+#      ollama pull nomic-embed-text &&
+#       ollama list
+#    networks:
+#      - ai_network
 
   django:
     build: .
@@ -58,11 +61,14 @@ services:
       -  "8000:8000"
     volumes:
       - .:/app
+      - staticfiles:/app/staticfiles
     depends_on:
-      ollama:
-        condition: service_healthy
-      ollama-pull:
-        condition: service_completed_successfully
+      - db
+#    depends_on:
+#      ollama:
+#        condition: service_healthy
+#      ollama-pull:
+#        condition: service_completed_successfully
     environment:
       OLLAMA_HOST: http://ollama:11434
       SECRET_KEY: ${SECRET_KEY}
@@ -75,12 +81,36 @@ services:
     env_file:
       - .env
     command: python manage.py runserver 0.0.0.0:8000
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python -c \"import socket; s=socket.create_connection(('127.0.0.1',8000),2); s.close()\"",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    networks:
+      - ai_network
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx
+    depends_on:
+      django:
+        condition: service_healthy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - staticfiles:/staticfiles:ro
     networks:
       - ai_network
 
 volumes:
     postgres_data:
     ollama_data:
+    staticfiles:
 
 networks:
   ai_network:
