@@ -107,6 +107,22 @@ services:
     networks:
       - ai_network
 
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok-tunnel
+    restart: unless-stopped
+    command:
+      - "http"
+      - "nginx:80"
+      - "--log=stdout"
+      - "--log-format=term"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN}
+    depends_on:
+      - nginx
+    networks:
+      - ai_network
+
 volumes:
     postgres_data:
     ollama_data:
