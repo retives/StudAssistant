@@ -18,7 +18,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     "studassistant.onrender.com", 
     "localhost", 
-    "127.0.0.1"
+    "127.0.0.1",
+    ".ngrok-free.app"
 ]
 
 INSTALLED_APPS = [
@@ -105,7 +106,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+    'http://*.ngrok-free.app',
+]
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 

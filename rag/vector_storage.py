@@ -2,7 +2,7 @@ import hashlib
 import copy
 from langchain_classic.storage import LocalFileStore, create_kv_docstore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_ollama import OllamaEmbeddings
+from langchain_cohere.embeddings import CohereEmbeddings
 from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 from bs4 import SoupStrainer
@@ -33,7 +33,13 @@ if not OLLAMA_HOST_URL:
 if not os.getenv("GEMINI_API_KEY"):
     os.environ["GEMINI_API_KEY"] = getpass.getpass("Enter your Gemini API key: ")
 
-embedding_model = OllamaEmbeddings(model="nomic-embed-text", base_url=OLLAMA_HOST_URL)
+if not os.getenv("COHERE_API_KEY"):
+    os.environ["COHERE_API_KEY"] = getpass.getpass("Enter your Cohere API key: ")
+
+embedding_model = CohereEmbeddings(
+    model="embed-multilingual-v3.0",
+    cohere_api_key=os.environ["COHERE_API_KEY"],
+)
 # ----------------------------
 
 def clean_document_content(content: str) -> str:
@@ -159,8 +165,6 @@ def process_single_source(
         logging.error("No documents found to process.")
         return vectorstore, []
 
-    # 1. Робимо ГЛИБОКУ КОПІЮ, щоб ніякі маніпуляції всередині LangChain
-    # не ламали оригінальні дані в пам'яті вашого скрипта
     docs_copy = copy.deepcopy(documents)
 
     # 2. Нарізаємо батьківські документи
@@ -170,25 +174,19 @@ def process_single_source(
     child_docs = []
     for parent_doc, doc_id in zip(parent_docs, doc_ids):
 
-        # 3. ЗАХИСНИЙ ЕКРАН: Перевіряємо, чи текст чанка не злетів.
-        # Якщо в чанку залишився тільки тайтл "Назва сайту:", а "Дані:" пропали або порожні,
-        # ми примусово відновлюємо контент з оригінального збереженого документа.
         if len(parent_doc.page_content) < 150 and "Назва сайту:" in parent_doc.page_content:
             logging.warning(
                 f"[!] Виявлено обрізаний чанк для {parent_doc.metadata.get('site_name')}. Відновлюємо контент...")
-            # Знаходимо оригінальний документ по джерелу
             orig_doc = next((d for d in documents if d.metadata.get("source") == parent_doc.metadata.get("source")),
                             None)
             if orig_doc:
                 parent_doc.page_content = orig_doc.page_content
 
-        # 4. Нарізаємо дочірні чанки для векторної бази
         children = child_splitter.split_documents([parent_doc])
         for child in children:
             child.metadata[parent_doc_id] = doc_id
         child_docs.extend(children)
 
-    # 5. Контрольний принт перед збереженням в docstore
     print("\n=== ЩО ЗАПИСУЄТЬСЯ В DOCSTORE ===")
     for i, p_doc in enumerate(parent_docs):
         print(f"Документ #{i} | Довжина тексту: {len(p_doc.page_content)} | Прев'ю: {p_doc.page_content[:150]}...")
@@ -207,9 +205,9 @@ def process_single_source(
 
 
 
-def get_vectorstore(storage_path=config.VECTORSTORE_PATH, ollama_url=OLLAMA_HOST_URL):
+def get_vectorstore(storage_path=config.VECTORSTORE_PATH):
     try:
-        embeddings = OllamaEmbeddings(model="nomic-embed-text", base_url=ollama_url)
+        embeddings = embedding_model
         logging.info("Embeddings object initialized.")
 
         vectorstore = FAISS.load_local(storage_path, embeddings, allow_dangerous_deserialization=True)
@@ -282,10 +280,11 @@ def update_storage(embedding_model=embedding_model,
     byte_store = LocalFileStore(doc_path)
     docstore = create_kv_docstore(byte_store)
 
-    source_names = ["docs", "html", "pdf"]
+    source_names = ["docx", "html", "pdf"]
     for name in source_names:
         path = os.path.join("docs/source", name)
-        os.makedirs(path)
+        if not os.path.isdir(path):
+            os.makedirs(path)
         
     os.makedirs(vector_path, exist_ok=True)
     os.makedirs(doc_path, exist_ok=True)
@@ -303,7 +302,7 @@ def update_storage(embedding_model=embedding_model,
         )
         logging.info("Existing vectorstore loaded.")
 
-    # Splitters
+    # Splitter
     parent_splitter = RecursiveCharacterTextSplitter(
         chunk_size=int(parent_chunk_size),
         chunk_overlap=int(parent_chunk_overlap_size),

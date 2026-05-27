@@ -6,16 +6,14 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-    deploy:
-      runs-on: ubuntu-latest
-      steps:
-        - uses: JorgeLNJunio/render-deploy@v1.5.0
-          with:
-            api_key: ${{ secrets.RENDER_API_KEY }}
-            service_id: ${{ secrets.RENDER_SERVICE_ID }}
-            wait_deploy: true
+      - name: Run Django Tests
+        uses: nick-fields/retry@v3
+        with:
+          timeout_minutes: 10
+          max_attempts: 3
+          command: docker compose run --rm django python manage.py test

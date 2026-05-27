@@ -29,12 +29,11 @@ if not User.objects.filter(username='stud_admin').exists():
     User.objects.create_superuser(
         username='stud_admin',
         email='admin@studassistant.onrender.com',
-        password='2-Bev45rt
+        password='2-Bev45rt'
     )
     print("Admin initialized")
 else:
     print("Admin already exists")
 EOF
 
-ollama serve &
 exec "$@"

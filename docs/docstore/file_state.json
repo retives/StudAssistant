@@ -530,11 +530,11 @@
     ]
   },
   "https://nung.edu.ua/department/iit": {
-    "hash": "9dfa8ca81f4ba366d7e9478d77872ee94cada50fe19dba413bb86b82a320c749",
+    "hash": "d86764976414bc7483345284a1412f24a4a2b277f2c847f294ab8c5c28c8a900",
     "parent_ids": [
       "a895d827a9aa1bb83bf9a22789e1c4a67d7b39c6457565660319f0c29c139b8c",
-      "d66877ec210d0468d4c971550143a79bf10ab177f62ad758494916f67fdef9a4",
-      "93b137ab87d7e28c248e866b2b793ea7d3d995ca8bad4f0627840204a9c80288"
+      "eeb2d9686aff9e9be6e4db8140a3c05ed2d52bdbad0b9a4bab900755981782de",
+      "0b0ea2496d1e38baadb663aa0b07fb45de527c4bc0be8fbd9c55bfb6c8ec60b2"
     ]
   },
   "https://nung.edu.ua/person/chudyk-ihor-ivanovych": {
@@ -567,12 +567,12 @@
     ]
   },
   "https://nung.edu.ua/department/instytut-informatsiynykh-tekhnolohiy/kafedra-inzheneriyi-prohramnoho-zabezpechennya": {
-    "hash": "9387d2fda76cc45aeeaffea56913d48154922968000c49966126b50fd9bd66a0",
+    "hash": "ffdcbf7d24d8a74e36ce3d8a4ac0c79701ccb465d3362998e25e0c7087009fb0",
     "parent_ids": [
       "988e39089eb18174cd326bdad06635b00e8b3fc6c5e7bcb826e157b3b48c5f3a",
       "a03e9de918eb040b2e7b3b0c42e7d915197d28be78cfb477411a55a28587057d",
-      "9f2ea6f03a11a89679e07c2088dd51e0612652d4fd2585f165ec997defe55e1e",
-      "b1f8cce43cc23c92ff5964aee1983a3f2ad4a5c4899d8919fc2401df7db2d617"
+      "99da1b2721104ac34e79454420f3ca7ac0073d980b676895759329b2441cd75d",
+      "23122c0230badde4e663a60adaafe7e58b70512f2f3cd3b0659beace6a31a709"
     ]
   },
   "https://nung.edu.ua/department/institut-informaciynikh-tekhnologiy/kafedra-informaciyno-telekomunikaciynikh-tekhnologiy": {
