@@ -106,7 +106,10 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.ngrok-free.app',
+    'http://*.ngrok-free.app',
+]
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
