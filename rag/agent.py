@@ -1,6 +1,7 @@
 import django
 import uuid
 import os
+from functools import lru_cache
 
 from langchain_classic.callbacks.tracers import logging
 from langchain_core.tools import tool
@@ -75,6 +76,8 @@ def search_university_docs(query: str) -> tuple[str, str]:
     Після отримання результату обов'язково проаналізуй його та виклади студенту у простому форматі.
 
     Дані повертаються у форматі tuple(результат, джерело)
+
+    Включай джерело у відповідь обов'язково завжди коли звертаєшся до цього інструменту.
     """
     try:
         retriever = get_retriever()
@@ -160,6 +163,8 @@ class StudAgent:
             Якщо студент задає питання не пов'язане з ІФНТУНГ поясни йому, що дане питання не входить в твою компетенцію.
             Якщо тобі не вистачає інформації про студента, запитай його щодо уточнення цих даних.
             Форматуй відповіді відповідно до markdown-розмітки.
+            
+            Якщо ти використовуєш search_university завжди за будь-яких умов вказуй джерело/джерела, що були отримуні з search_university_docs
                 Контекст:
                 {{context}}
             """),
@@ -204,6 +209,15 @@ class StudAgent:
         prompt = f"Проаналізуй повідомлення: \"{message}\" і створи короткий заголовок. Відповідай лише заголовком."
         response = self.llm.invoke(prompt)
         return response.content
+
+
+@lru_cache(maxsize=256)
+def get_cached_agent(group: str, faculty: str, department: str) -> StudAgent:
+    """
+    Cache agents per-process to avoid rebuilding LLM/prompt/executor on every request.
+    This is safe for typical gunicorn/uvicorn multi-worker setups (each worker has its own cache).
+    """
+    return StudAgent(group=group, faculty=faculty, department=department)
 
 if __name__ == "__main__":
     agent = StudAgent("ІП-22-1", "Інженерія програмного забезпечення", "Факультет Інформаційних технологій")
