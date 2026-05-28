@@ -10,8 +10,8 @@ from .models import Department, Faculty, Group, User
 def account_settings(request):
     user: User = request.user
 
+    departments = Department.objects.all()
     faculties = Faculty.objects.all().order_by("name")
-    departments = Department.objects.select_related("faculty").all().order_by("name")
     groups = Group.objects.select_related("department", "department__faculty").all().order_by("name")
 
     errors = {}
@@ -49,13 +49,16 @@ def account_settings(request):
         if group_id:
             group = get_object_or_404(Group, pk=group_id)
 
+        # Hierarchy: Faculty -> Department -> Group
+        if department and not faculty:
+            errors["department"] = "Select a faculty first."
         if department and faculty and department.faculty_id != faculty.id:
             errors["department"] = "Department does not belong to selected faculty."
 
-        if group and department and group.department_id != department.id:
-            errors["group"] = "Group does not belong to selected department."
         if group and not department:
             errors["group"] = "Select a department first."
+        if group and department and group.department_id != department.id:
+            errors["group"] = "Group does not belong to selected department."
 
         if not errors:
             user.username = username
@@ -92,7 +95,6 @@ def account_settings(request):
         },
     )
 
-# Create your views here.
 
 
 @login_required
