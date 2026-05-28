@@ -7,7 +7,7 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST, require_GET
 from accounts.models import User
 from .models import Chat, Message
-from .agent import StudAgent
+from .agent import get_cached_agent
 # Create your views here.
 
 
@@ -61,8 +61,16 @@ def send_message(request, chat_id):
         Message.objects.create(chat=chat, sender=request.user, content=content)
         # Ask agent
         try:
-            # Create an agent
-            agent = StudAgent("Факультет інформаційних технологій", "Інженерія програмного забезпечення", "ІП-22-1")
+            # Require academic profile to be set (picked during signup/login/settings).
+            if not current_user.faculty_id or not current_user.department_id or not current_user.group_id:
+                return redirect("account_settings")
+
+            # Reuse cached agent keyed by user profile.
+            agent = get_cached_agent(
+                group=str(current_user.group_id),
+                faculty=str(current_user.faculty.name),
+                department=str(current_user.department.name),
+            )
             # Generate a chat title
             if chat.name == "New Chat":
                 chat.name = agent.get_title(content)

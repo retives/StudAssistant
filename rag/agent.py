@@ -1,6 +1,7 @@
 import django
 import uuid
 import os
+from functools import lru_cache
 
 from langchain_classic.callbacks.tracers import logging
 from langchain_core.tools import tool
@@ -204,6 +205,15 @@ class StudAgent:
         prompt = f"Проаналізуй повідомлення: \"{message}\" і створи короткий заголовок. Відповідай лише заголовком."
         response = self.llm.invoke(prompt)
         return response.content
+
+
+@lru_cache(maxsize=256)
+def get_cached_agent(group: str, faculty: str, department: str) -> StudAgent:
+    """
+    Cache agents per-process to avoid rebuilding LLM/prompt/executor on every request.
+    This is safe for typical gunicorn/uvicorn multi-worker setups (each worker has its own cache).
+    """
+    return StudAgent(group=group, faculty=faculty, department=department)
 
 if __name__ == "__main__":
     agent = StudAgent("ІП-22-1", "Інженерія програмного забезпечення", "Факультет Інформаційних технологій")
